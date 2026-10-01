@@ -22,7 +22,7 @@ Neither target establishes hourly availability, roof capacity, outage survival o
 
 The grid-optional usable-energy target equals requested backup hours multiplied by average open-hours kW. The off-grid target equals requested days of autonomy multiplied by daily kWh. Nominal energy additionally needs the entered usable depth of discharge and inverter efficiency.
 
-Complete module sizing also needs module nominal energy, continuous DC discharge power and known connected-load supply requirements. Sustained X-ray input kVA is treated at power factor one as a conservative DC power bound, rather than relabelled as measured draw. Momentary X-ray exposures require a separate BMS, phase and overload-duration check.
+Complete module sizing also needs module nominal energy, continuous DC discharge power and known connected-load supply requirements. Sustained X-ray input kVA is treated at power factor one as a conservative AC power upper bound, then divided by inverter efficiency for the DC discharge screen; it is not relabelled as measured draw. Momentary X-ray exposures require a separate BMS, phase and overload-duration check.
 
 Simple numerical inverter comparisons do not establish electrical compatibility. The tool does not choose a certified system or verify manufacturer interoperability.
 
