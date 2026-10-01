@@ -1,0 +1,67 @@
+{
+  "candidate": "/Users/su7sh/Documents/ChatGPT/RSNA Sustainability submission/publishing/repository/index.html",
+  "cases": [
+    {
+      "name": "Embedded engine unchanged",
+      "pass": true
+    },
+    {
+      "name": "Embedded data unchanged",
+      "pass": true
+    },
+    {
+      "name": "Static IDs unique and label targets exist",
+      "pass": true
+    },
+    {
+      "name": "Initial view has Location only and blank private operating inputs",
+      "pass": true
+    },
+    {
+      "name": "Unknown service and power data never trap Next",
+      "pass": true
+    },
+    {
+      "name": "Back restores previous page and progress remains active",
+      "pass": true
+    },
+    {
+      "name": "Scanner powers hidden initially and measured readings still overrideable",
+      "pass": true
+    },
+    {
+      "name": "Unknown chosen powers and plugged-off readings open automatically",
+      "pass": true
+    },
+    {
+      "name": "India quote uses INR primary and dated USD presentation reference",
+      "pass": true
+    },
+    {
+      "name": "Zero quote remains a valid zero reference",
+      "pass": true
+    },
+    {
+      "name": "Operator FX edit clears Federal Reserve attribution and date",
+      "pass": true
+    },
+    {
+      "name": "Invalid FX and quote inputs suppress USD reference",
+      "pass": true
+    },
+    {
+      "name": "Country change clears local quote and USA uses USD primary only",
+      "pass": true
+    },
+    {
+      "name": "Summary retains no-savings scope and compatibility limits",
+      "pass": true
+    },
+    {
+      "name": "Print and mobile navigation have explicit CSS support",
+      "pass": true
+    }
+  ],
+  "passed": 15,
+  "total": 15
+}

@@ -30,6 +30,8 @@ Simple numerical inverter comparisons do not establish electrical compatibility.
 
 The displayed installed budget is an operator-entered quote. No automatic savings, payback, avoided grid electricity, avoided fuel or avoided CO2 is calculated in this release. Those comparisons need a validated time-of-use and battery-dispatch model, applicable financial inputs and a matched-service baseline.
 
+US quotes are denominated in USD. For India, the same quote is displayed in INR with an approximate USD equivalent: INR divided by the entered INR-per-USD rate. The bundled Federal Reserve H.10 reference is 95.81 INR/USD, observed 25 September 2026 and released 28 September 2026. It is historical and indicative, not an executable transaction rate. A valid positive rate, dated observation and nonnegative quote are required. Operator changes clear numerical source attribution; country changes clear the quote to avoid relabelling an old amount in another currency.
+
 Published grid factors remain source references with their dates and scopes. India's operational CO2 factor is kept distinct from lifecycle CO2e factors. No full lifecycle calculation is provided.
 
 The proposed OCH pilot will establish its baseline after renovation and test energy, fuel, interruptions and waiting outcomes. All current planning calculations are prospective.

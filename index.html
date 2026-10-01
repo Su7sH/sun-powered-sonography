@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="description" content="A compact, source-linked solar and battery planning prototype for ultrasound services."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="description" content="A compact, source-linked solar and battery planning prototype for ultrasound services."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Sun-Powered Sonography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6,7 +6,7 @@
 <style>
 /* Compact single column: location → service → power plan → plan results; details behind one disclosure. */
 :root {
-  --bg: #f5f7f3; --panel: #ffffff; --ink: #183a2f; --soft: #56695f; --muted: #7b8c83; --line: #dbe4dc; --brand: #1f5b46; --onbrand: #ffffff;
+  --bg: #f5f7f3; --panel: #ffffff; --ink: #183a2f; --soft: #56695f; --muted: #65766c; --line: #dbe4dc; --brand: #1f5b46; --onbrand: #ffffff;
   --tint: #e8f1ea; --warn: #8a5a00; --warn-bg: #fff4dc; --crit: #a32a2a; --crit-bg: #fbe9e7; --ok: #1f6b3a;
   --sun: #d2691e; --load: #2e6fb8;
   --font: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -48,7 +48,7 @@ input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-v
 input.missing { border-color: var(--warn); background: var(--warn-bg); }
 button { font: inherit; cursor: pointer; }
 .primary { background: var(--brand); color: var(--onbrand); border: 1px solid var(--brand); border-radius: 10px; min-height: 44px; padding: 10px 18px; font-weight: 600; }
-.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 40px; padding: 8px 14px; }
+.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; min-height: 44px; padding: 8px 14px; }
 .small { font-size: 14px; }
 .link { background: none; border: 0; padding: 0; color: var(--brand); text-decoration: underline; text-underline-offset: 3px; font-size: 14.5px; }
 .hint { font-size: 13.5px; color: var(--soft); margin: 6px 0 0; }
@@ -84,7 +84,7 @@ input[type="radio"], input[type="checkbox"] { width: 18px; height: 18px; accent-
 .needs { margin-top: 12px; font-size: 14px; }
 .needs ul { margin: 6px 0 0; padding-left: 20px; } .needs li { margin: 2px 0; }
 .actions { display: flex; justify-content: flex-end; margin-top: 16px; }
-details.adv summary { cursor: pointer; font-weight: 600; font-size: 17px; min-height: 32px; }
+details.adv summary { cursor: pointer; font-weight: 600; font-size: 17px; min-height: 44px; }
 .adv-body { padding-top: 6px; }
 .tablewrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
@@ -107,8 +107,84 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
   #print-summary { display: block !important; white-space: pre-wrap; overflow-wrap: anywhere; font: 11pt/1.45 sans-serif; }
 }
 
+
+/* Four-step wizard. Numerical readings remain precise inputs. */
+.app { max-width: 880px; }
+.top { padding-bottom: 12px; }
+.intro { margin-bottom: 18px; }
+.intro h1 { max-width: 21ch; font-size: clamp(28px, 5vw, 38px); }
+.intro .sub { font-size: 15px; max-width: 62ch; }
+.wizard-navigation { margin: 6px 0 20px; }
+.step-list { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 12px; padding: 0; }
+.step-list button { display: flex; gap: 8px; align-items: center; width: 100%; min-height: 56px; text-align: left; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--panel); color: var(--soft); font-size: 13px; line-height: 1.25; }
+.step-list .step-number { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid var(--line); border-radius: 50%; flex: none; font-variant-numeric: tabular-nums; }
+.step-list button[aria-current="step"] { border-color: var(--brand); color: var(--ink); background: var(--tint); font-weight: 600; }
+.step-list button[aria-current="step"] .step-number { background: var(--brand); color: var(--onbrand); border-color: var(--brand); }
+.progress-line { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 12.5px; color: var(--soft); }
+.progress-line progress { height: 5px; width: 130px; border: 0; accent-color: var(--brand); }
+.wizard-page > h2 { scroll-margin-top: 20px; }
+.wizard-page h2:focus { outline: none; }
+.step-description { margin: -6px 0 18px; color: var(--soft); font-size: 14.5px; }
+.wizard-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 10px 0 20px; }
+.wizard-footer .primary { min-width: 150px; }
+button:disabled { cursor: default; opacity: 0.45; }
+.wizard-status { min-height: 0; font-size: 13px; color: var(--warn); margin: 0 0 12px; }
+.wizard-status:empty { display: none; }
+.choice-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 18px; }
+.choice-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.choice-grid label { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 48px; background: var(--panel); cursor: pointer; line-height: 1.35; }
+.choice-grid label.chosen { border-color: var(--brand); background: var(--tint); }
+.check { min-height: 44px; }
+.field label .u { display: inline; }
+.field .hint { margin: 0; }
+.del { min-height: 44px; min-width: 44px; color: var(--soft); }
+.detail-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.detail-links button { min-height: 44px; }
+.actions { flex-wrap: wrap; gap: 10px; }
+.actions button { flex: 1 1 130px; }
+.result-scope { padding: 10px 12px; background: var(--tint); border-radius: 9px; font-size: 13px; color: var(--soft); margin: 0 0 10px; }
+.notes-details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.notes-details summary, .pilot-details summary { cursor: pointer; min-height: 44px; display: list-item; font-weight: 500; font-size: 14px; padding-block: 8px; }
+.equipment-details > summary, .power-readings > summary { cursor: pointer; min-height: 44px; padding-block: 10px; font-weight: 600; font-size: 14px; }
+.power-readings > summary .u { display: block; margin: 4px 0 0; font-weight: 400; }
+.power-readings { margin-top: 8px; border-top: 1px solid var(--line); }
+.equipment-details { margin: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 4px; }
+.needs summary { cursor: pointer; min-height: 44px; padding-block: 8px; font-weight: 600; }
+.how { margin-top: 18px; }
+.how > summary { cursor: pointer; min-height: 44px; font-weight: 600; font-size: 15px; }
+.how ul { margin-top: 12px; }
+.fx-note { overflow-wrap: anywhere; }
+.usd-ref { display: block; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.usd-ref strong { color: var(--ink); }
+.skip { position: absolute; top: -60px; left: 12px; background: var(--panel); color: var(--ink); padding: 12px; z-index: 5; }
+.skip:focus { top: 8px; }
+input[type="date"] { font: inherit; font-size: 15px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 9px; min-height: 44px; padding: 9px 11px; width: 100%; min-width: 0; }
+@media (max-width: 560px) {
+  .app { padding-inline: 12px; padding-bottom: 104px; }
+  .top { align-items: flex-start; }
+  .logo { font-size: 14px; }
+  .toplink { font-size: 12.5px; min-height: 44px; display: flex; align-items: center; }
+  .step-list { gap: 5px; }
+  .step-list button { min-height: 72px; flex-direction: column; align-items: flex-start; gap: 6px; padding: 8px; font-size: 11.5px; }
+  .progress-line progress { width: 90px; }
+  .choice-grid.three { grid-template-columns: 1fr; }
+  .choice-grid { gap: 8px; }
+  input[type="number"], input[type="text"], input[type="date"], select { font-size: 16px; }
+  .rc .v { font-size: 25px; }
+  .wizard-footer { position: fixed; bottom: 0; inset-inline: 0; margin: 0; padding: 12px max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)); background: var(--panel); border-top: 1px solid var(--line); box-shadow: 0 -4px 16px #0000000c; z-index: 4; }
+  .wizard-footer .primary { flex: 1; }
+  .toast { bottom: calc(env(safe-area-inset-bottom, 0px) + 88px); z-index: 5; max-width: calc(100vw - 24px); width: max-content; }
+}
+@media print {
+  .wizard-navigation, .wizard-footer, .wizard-status, .skip, .notes-details, .detail-links { display: none !important; }
+  .wizard-page.result[hidden] { display: block !important; }
+  .wizard-page.result { color: #000; }
+}
+
 </style>
+</head><body>
 <!--BODY-->
+<a class="skip" href="#wizard-navigation">Skip to planning steps</a>
 <div class="app">
   <header class="top">
     <div class="logo"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></svg><span>Sun-Powered Sonography</span></div>
@@ -116,26 +192,41 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
   </header>
 
   <main class="main">
-    <section class="intro">
-      <p class="eyebrow">Solar and battery planning for ultrasound services</p>
-      <h1>Could solar and a battery power your ultrasound service?</h1>
-      <p class="sub">Enter your own readings. The tool uses cited reference data where it exists and shows a result only when the inputs it needs are complete.</p>
-      <button type="button" class="link" id="och">Use OCH Alephata's location (planned pilot)</button>
-      <p class="och-note" id="och-note" hidden>OCH Alephata is under renovation. Its ultrasound service is planned to open with a diesel generator as outage backup. Equipment, hours and loads will be measured after it reopens, so they are left for you to enter.</p>
+    <section class="intro" id="wizard-intro">
+      <p class="eyebrow">For ultrasound services</p>
+      <h1>Plan solar and battery power</h1>
+      <p class="sub">Four steps using cited model data and your own readings. Unknown details can wait; the results that need them will wait too.</p>
     </section>
+    <nav class="wizard-navigation" id="wizard-navigation" aria-label="Planning steps" tabindex="-1">
+      <ol class="step-list">
+        <li><button type="button" data-step-target="0" aria-current="step"><span class="step-number" aria-hidden="true">1</span><span>Location</span></button></li>
+        <li><button type="button" data-step-target="1"><span class="step-number" aria-hidden="true">2</span><span>Service &amp; equipment</span></button></li>
+        <li><button type="button" data-step-target="2"><span class="step-number" aria-hidden="true">3</span><span>Power plan</span></button></li>
+        <li><button type="button" data-step-target="3"><span class="step-number" aria-hidden="true">4</span><span>Your plan</span></button></li>
+      </ol>
+      <div class="progress-line"><span id="wizard-current">Step 1 of 4: Location</span><progress id="wizard-progress" value="1" max="4" aria-label="Planning progress"></progress></div>
+    </nav>
+    <p class="wizard-status" id="wizard-status" role="status" aria-live="polite"></p>
+    <noscript><p class="alert warn">Enable JavaScript to enter readings and calculate planning targets.</p></noscript>
 
-    <section class="card" aria-labelledby="h-loc">
-      <h2 id="h-loc"><span class="num">1</span>Location</h2>
+    <section class="card wizard-page" id="step-location" data-wizard-step="0" aria-labelledby="h-loc">
+      <h2 id="h-loc" tabindex="-1"><span class="num">1</span>Location</h2>
       <div class="grid2">
         <div class="field"><label for="country">Country</label><select id="country"></select></div>
         <div class="field"><label for="city">Nearest solar data point</label><select id="city"></select></div>
       </div>
       <p class="hint" id="yield-note"></p>
+      <details class="pilot-details"><summary>Planned pilot at OCH Alephata</summary>
+        <p class="hint">OCH is under renovation and plans generator backup. Its loads and operating hours are not measured yet.</p>
+        <button type="button" class="link" id="och">Use Alephata's location and planned backup</button>
+        <p class="och-note" id="och-note" hidden>Location and planned diesel backup selected. Equipment and operating readings remain yours to enter.</p>
+      </details>
       <div id="my-yield" hidden></div>
     </section>
 
-    <section class="card" aria-labelledby="h-svc">
-      <h2 id="h-svc"><span class="num">2</span>Your service</h2>
+    <section class="card wizard-page" id="step-service" data-wizard-step="1" aria-labelledby="h-svc" hidden>
+      <h2 id="h-svc" tabindex="-1"><span class="num">2</span>Service &amp; equipment</h2>
+      <p class="step-description">Start with your schedule and scanner. Add the equipment that shares this supply.</p>
       <div class="grid3">
         <div class="field"><label for="site.open">Opens <span class="u">hour, 0–24</span></label><input id="site.open" data-k="site.open" type="number" inputmode="decimal" min="0" max="24" step="0.5"></div>
         <div class="field"><label for="site.close">Closes <span class="u">hour, 0–24</span></label><input id="site.close" data-k="site.close" type="number" inputmode="decimal" min="0" max="24" step="0.5"></div>
@@ -146,25 +237,27 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
       <button type="button" class="ghost small" id="add-scanner">Add another scanner</button>
 
       <h3>Air-conditioning</h3>
-      <div class="radio-row" role="radiogroup" aria-label="Does the room have air-conditioning?">
+      <div class="radio-row choice-grid" role="radiogroup" aria-label="Does the room have air-conditioning?">
         <label><input type="radio" name="hasAC" value="yes"> Yes</label>
         <label><input type="radio" name="hasAC" value="no"> No</label>
       </div>
       <div id="acs"></div>
 
-      <h3>Other equipment</h3>
+      <details class="equipment-details" id="other-details"><summary>Other equipment <span class="u">optional</span></summary>
       <p class="hint">Computers, printers, lights, fans, gel warmers and anything else on the same supply. Pick a reference item for its cited power, or add your own.</p>
       <div id="others"></div>
       <div class="addbar"><select id="add-ref" aria-label="Add equipment"></select><button type="button" class="ghost small" id="add-other">Add</button></div>
+      </details>
 
       <label class="check"><input type="checkbox" id="xray-on"> This service also runs an X-ray unit</label>
       <div id="xray" hidden></div>
     </section>
 
-    <section class="card" aria-labelledby="h-plan">
-      <h2 id="h-plan"><span class="num">3</span>Power plan</h2>
+    <section class="card wizard-page" id="step-power" data-wizard-step="2" aria-labelledby="h-plan" hidden>
+      <h2 id="h-plan" tabindex="-1"><span class="num">3</span>Power plan</h2>
+      <p class="step-description">Choose your goal and the backup target. Datasheet details and a budget quote are optional until they are known.</p>
       <div class="field"><span class="lbl">During grid outages today, the service…</span>
-        <div class="radio-col" role="radiogroup" aria-label="Outage backup today">
+        <div class="radio-col choice-grid three" role="radiogroup" aria-label="Outage backup today">
           <label><input type="radio" name="backup" value="diesel"> runs on a diesel generator</label>
           <label><input type="radio" name="backup" value="none"> pauses (no backup)</label>
           <label><input type="radio" name="backup" value="other"> uses another backup</label>
@@ -174,7 +267,7 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
         <div class="field"><label for="plan.outageH">Grid outage <span class="u">hours per open day, average</span></label><input id="plan.outageH" data-k="plan.outageH" type="number" inputmode="decimal" min="0" step="0.25"></div>
       </div>
       <div class="field"><span class="lbl">Design goal</span>
-        <div class="radio-col" role="radiogroup" aria-label="Design goal">
+        <div class="radio-col choice-grid" role="radiogroup" aria-label="Design goal">
           <label><input type="radio" name="goal" value="gridopt"> Keep the grid as backup</label>
           <label><input type="radio" name="goal" value="offgrid"> Fully off-grid</label>
         </div>
@@ -185,18 +278,21 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
       </div>
     </section>
 
-    <section class="card result" aria-labelledby="h-res" aria-live="polite">
-      <h2 id="h-res">Your plan</h2>
-      <p class="hint">Screening estimate from your inputs and cited data. Not an hourly simulation or an equipment design.</p>
+    <section class="card result wizard-page" id="step-results" data-wizard-step="3" aria-labelledby="h-res" hidden>
+      <h2 id="h-res" tabindex="-1"><span class="num">4</span>Your plan</h2>
+      <p class="result-scope">Planning targets only. Savings, payback and avoided CO₂ are not calculated. An hourly check and equipment design are needed before installation.</p>
+      <p class="hint" id="result-status" role="status" aria-live="polite"></p>
       <div class="cards" id="cards"></div>
       <div id="alerts"></div>
+      <details class="notes-details" id="technical-notes"><summary>Technical checks and limits</summary><div id="info-alerts"></div></details>
       <div id="needs"></div>
+      <div class="detail-links"><button type="button" class="link" data-step-target="1">Edit service readings</button><button type="button" class="link" data-step-target="2" data-open-details="adv">Edit battery, inverter or budget</button></div>
       <div class="actions" style="gap:10px"><button type="button" class="ghost" id="print">Print summary</button><button type="button" class="primary" id="copy">Copy summary</button></div>
       <pre id="print-summary" hidden></pre>
     </section>
 
-    <details class="card adv" id="adv">
-      <summary>Advanced details</summary>
+    <details class="card adv wizard-page" id="adv" data-wizard-step="2" hidden>
+      <summary>Battery, inverter &amp; budget details</summary>
       <div class="adv-body">
         <h3>Battery, inverter and panels <span class="u">from the datasheets of the equipment you plan to buy</span></h3>
         <p class="hint"><button type="button" class="link" id="use-loom">Use the reference battery module</button> <span id="loom-note"></span></p>
@@ -214,6 +310,15 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
         <h3>Installed budget <span class="u">from your supplier's quote</span></h3>
         <div class="field"><label for="money.quote">Installed price of the planned system <span class="u" id="cur1"></span></label><input id="money.quote" data-k="money.quote" type="number" min="0"></div>
         <p class="hint">Confirm the quote's equipment, compatibility, installation and taxes with the supplier. Savings and payback need a validated model of when solar power is used and how the battery operates.</p>
+        <div id="fx-block" style="margin-top:18px">
+          <h3>USD reference <span class="u">presentation only</span></h3>
+          <div class="grid2">
+            <div class="field"><label for="fx.inrPerUsd">INR per US dollar</label><input id="fx.inrPerUsd" data-k="fx.inrPerUsd" type="number" min="0.0001" step="0.0001" inputmode="decimal"></div>
+            <div class="field"><label for="fx.date">Rate observation date</label><input id="fx.date" data-k="fx.date" type="date"></div>
+          </div>
+          <p class="hint fx-note" id="fx-note"></p>
+          <button type="button" class="link" id="reset-fx">Use the dated Federal Reserve reference</button>
+        </div>
         <h3>Grid emission factor <span class="u">source reference only</span></h3>
         <p class="hint" id="ef-note"></p>
         <div id="balance"></div>
@@ -222,8 +327,8 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
       </div>
     </details>
 
-    <section class="card how" id="how" aria-labelledby="h-how">
-      <h2 id="h-how">How it works</h2>
+    <div class="wizard-footer"><button type="button" class="ghost" id="wizard-back" disabled>Back</button><button type="button" class="primary" id="wizard-next">Next: Service</button></div>
+    <details class="card how" id="how"><summary id="h-how">Method, sources and scope</summary>
       <ul>
         <li><b>Energy use</b> = each device's power × hours in each state (scanning, idle, after hours). Scanner powers come from a published measurement study where a model was measured; otherwise you enter them.</li>
         <li><b>Solar</b> = yearly (grid kept) or worst-month (off-grid) energy ÷ modelled PV yield from EC JRC PVGIS 5.3 for the chosen point, which already includes 14% system losses. Battery losses are included only if you enter the round-trip efficiency.</li>
@@ -232,10 +337,10 @@ textarea.copybox { width: 100%; min-height: 200px; font: 12.5px/1.4 ui-monospace
         <li>Nothing here is a measured saving, a guaranteed backup time or a demonstrated patient benefit. The OCH pilot will measure energy, fuel, interruptions and patient waiting after it opens.</li>
       </ul>
       <p class="hint">Prepared for the RSNA 2026 Imaging Sustainability Challenge. Reference data, method and checks are in the <a href="https://github.com/Su7sH/sun-powered-sonography" target="_blank" rel="noopener">project repository</a>.</p>
-    </section>
+    </details>
   </main>
 </div>
-<div class="toast" id="toast" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <script>
 window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN", "name": "India", "currency": "INR", "ef": {"v": 0.675, "src": "https://cea.nic.in/wp-content/uploads/baseline/2026/09/User_Guide__Version_22.0.pdf", "date": "FY2025–26", "scope": "operational CO2 (CEA CO2 Baseline Database v22, weighted average, FY2025-26)", "lifecycle": false}}, {"code": "PA2", "name": "Pakistan", "currency": "", "ef": {"v": 0.31019, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "BA3", "name": "Bangladesh", "currency": "", "ef": {"v": 0.69613, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "NE4", "name": "Nepal", "currency": "", "ef": {"v": 0.02426, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2024", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "SR5", "name": "Sri Lanka", "currency": "", "ef": {"v": 0.32116, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "IN6", "name": "Indonesia", "currency": "", "ef": {"v": 0.68111, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2024", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "PH7", "name": "Philippines", "currency": "", "ef": {"v": 0.59544, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "VI8", "name": "Vietnam", "currency": "", "ef": {"v": 0.46258, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "NI9", "name": "Nigeria", "currency": "", "ef": {"v": 0.45571, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "KE10", "name": "Kenya", "currency": "", "ef": {"v": 0.09544, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "UG11", "name": "Uganda", "currency": "", "ef": {"v": 0.05852, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2024", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "TA12", "name": "Tanzania", "currency": "", "ef": {"v": 0.34502, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2024", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "ET13", "name": "Ethiopia", "currency": "", "ef": {"v": 0.02308, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "GH14", "name": "Ghana", "currency": "", "ef": {"v": 0.46889, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2024", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "SO15", "name": "South Africa", "currency": "", "ef": {"v": 0.69896, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "EG16", "name": "Egypt", "currency": "", "ef": {"v": 0.56323, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "BR17", "name": "Brazil", "currency": "", "ef": {"v": 0.10995, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "ME18", "name": "Mexico", "currency": "", "ef": {"v": 0.47402, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "US19", "name": "USA", "currency": "", "ef": {"v": 0.3844, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "UK20", "name": "UK", "currency": "", "ef": {"v": 0.21741, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "AU21", "name": "Australia", "currency": "", "ef": {"v": 0.52459, "src": "https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv", "date": "2025", "scope": "lifecycle CO2e (Ember)", "lifecycle": true}}, {"code": "XX", "name": "Other location (enter your own solar yield)", "currency": "", "ef": null}], "cities": [{"cc": "IN", "city": "Alephata", "monthly": [5.11, 5.27, 5.11, 4.83, 4.46, 3.35, 2.65, 2.93, 3.36, 4.35, 4.68, 4.82], "annual": 4.23589041, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=19.18&lon=74.11&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Pune", "monthly": [5.12, 5.3, 5.06, 4.76, 4.4, 3.13, 2.43, 2.73, 3.21, 4.22, 4.66, 4.83], "annual": 4.1469863, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=18.52&lon=73.86&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Mumbai", "monthly": [5.21, 5.38, 5.25, 4.98, 4.45, 3.03, 2.23, 2.65, 3.19, 4.32, 4.71, 4.84], "annual": 4.17835616, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=19.08&lon=72.88&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Nagpur", "monthly": [4.92, 5.13, 4.98, 4.75, 4.3, 3.33, 2.33, 2.57, 3.35, 4.39, 4.68, 4.81], "annual": 4.12054795, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=21.15&lon=79.09&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Delhi", "monthly": [4.71, 5.04, 5.13, 5.04, 4.61, 4.01, 3.2, 3.31, 3.95, 4.84, 4.81, 4.77], "annual": 4.44679452, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=28.61&lon=77.21&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Bengaluru", "monthly": [4.98, 5.36, 5.13, 4.66, 4.23, 3.5, 3.11, 3.33, 3.77, 3.97, 3.79, 4.2], "annual": 4.16194521, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=12.97&lon=77.59&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Chennai", "monthly": [4.45, 4.94, 4.96, 4.75, 4.37, 3.72, 3.41, 3.61, 3.89, 3.86, 3.5, 3.74], "annual": 4.09432877, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=13.08&lon=80.27&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Kolkata", "monthly": [4.72, 4.85, 4.79, 4.47, 3.82, 3.05, 2.64, 2.81, 3.07, 3.73, 4.31, 4.4], "annual": 3.88326027, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=22.57&lon=88.36&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Hyderabad", "monthly": [4.93, 5.17, 4.96, 4.57, 4.27, 3.37, 2.78, 3.1, 3.39, 4.12, 4.34, 4.66], "annual": 4.13271233, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=17.39&lon=78.49&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Ahmedabad", "monthly": [5.2, 5.37, 5.23, 5.01, 4.62, 3.61, 2.45, 2.51, 3.51, 4.79, 4.82, 4.91], "annual": 4.32775342, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=23.02&lon=72.57&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Jaipur", "monthly": [5.0, 5.31, 5.22, 5.07, 4.62, 3.96, 3.13, 3.09, 3.98, 4.89, 4.82, 4.9], "annual": 4.49249315, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=26.91&lon=75.79&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Lucknow", "monthly": [4.79, 5.13, 5.19, 5.02, 4.56, 3.75, 2.81, 3.05, 3.61, 4.58, 4.8, 4.75], "annual": 4.33131507, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=26.85&lon=80.95&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Patna", "monthly": [4.71, 5.11, 5.14, 4.92, 4.36, 3.57, 2.82, 3.07, 3.37, 4.16, 4.59, 4.6], "annual": 4.19405479, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=25.59&lon=85.14&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Guwahati", "monthly": [4.41, 4.55, 4.47, 3.8, 3.22, 2.62, 2.54, 2.78, 3.12, 3.75, 4.25, 4.22], "annual": 3.64035616, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=26.14&lon=91.74&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN", "city": "Kochi", "monthly": [4.8, 4.96, 4.63, 3.98, 3.16, 2.53, 2.62, 2.87, 3.21, 3.44, 3.6, 4.21], "annual": 3.65934247, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=9.93&lon=76.27&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "PA2", "city": "Karachi", "monthly": [5.17, 5.42, 5.37, 5.3, 4.91, 4.19, 3.47, 3.38, 4.27, 5.0, 5.03, 5.08], "annual": 4.71093151, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=24.86&lon=67.01&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "BA3", "city": "Dhaka", "monthly": [4.67, 4.87, 4.74, 4.15, 3.39, 2.77, 2.66, 2.89, 3.16, 3.71, 4.3, 4.3], "annual": 3.79454795, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=23.81&lon=90.41&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "NE4", "city": "Kathmandu", "monthly": [4.59, 4.71, 4.89, 4.66, 4.04, 3.2, 2.39, 2.72, 3.2, 4.09, 4.33, 4.45], "annual": 3.93419178, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=27.72&lon=85.32&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "SR5", "city": "Colombo", "monthly": [4.27, 4.49, 4.43, 4.01, 3.33, 3.27, 3.41, 3.58, 3.58, 3.55, 3.48, 3.69], "annual": 3.75394521, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=6.93&lon=79.86&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "IN6", "city": "Jakarta", "monthly": [3.61, 3.69, 4.0, 4.03, 3.94, 3.81, 4.06, 4.46, 4.7, 4.55, 4.05, 3.62], "annual": 4.04580822, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-6.21&lon=106.85&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "PH7", "city": "Manila", "monthly": [3.63, 4.07, 4.4, 4.47, 3.95, 3.48, 3.17, 3.32, 3.36, 3.55, 3.68, 3.34], "annual": 3.6969589, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=14.6&lon=120.98&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "VI8", "city": "Ho Chi Minh City", "monthly": [3.99, 4.55, 4.6, 4.43, 3.86, 3.58, 3.45, 3.67, 3.5, 3.52, 3.63, 3.69], "annual": 3.86780822, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=10.82&lon=106.63&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "NI9", "city": "Lagos", "monthly": [4.56, 4.59, 4.31, 4.2, 3.66, 2.94, 2.87, 3.26, 3.25, 3.84, 4.31, 4.5], "annual": 3.85287671, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=6.52&lon=3.38&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=0&usehorizon=0"}, {"cc": "KE10", "city": "Nairobi", "monthly": [4.67, 4.89, 4.96, 4.44, 3.74, 3.28, 3.07, 3.28, 3.99, 4.31, 4.08, 4.36], "annual": 4.08326027, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-1.29&lon=36.82&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=180&usehorizon=0"}, {"cc": "UG11", "city": "Kampala", "monthly": [4.56, 4.65, 4.4, 3.98, 3.58, 3.45, 3.58, 3.65, 3.87, 4.01, 3.98, 4.19], "annual": 3.98813699, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=0.35&lon=32.58&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=0&usehorizon=0"}, {"cc": "TA12", "city": "Dar es Salaam", "monthly": [4.53, 4.7, 4.41, 3.65, 3.68, 3.99, 4.09, 4.3, 4.67, 4.85, 4.62, 4.57], "annual": 4.33545205, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-6.79&lon=39.21&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=180&usehorizon=0"}, {"cc": "ET13", "city": "Addis Ababa", "monthly": [5.22, 5.29, 5.0, 4.32, 4.07, 3.57, 3.07, 3.28, 3.67, 4.96, 5.15, 5.25], "annual": 4.39849315, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=9.03&lon=38.75&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=0&usehorizon=0"}, {"cc": "GH14", "city": "Accra", "monthly": [4.88, 4.98, 4.76, 4.59, 4.08, 3.57, 3.79, 4.02, 4.35, 4.78, 4.87, 4.82], "annual": 4.45378082, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=5.56&lon=-0.2&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=10&aspect=0&usehorizon=0"}, {"cc": "SO15", "city": "Johannesburg", "monthly": [4.37, 4.51, 4.41, 4.36, 4.76, 4.75, 5.0, 5.2, 5.43, 5.03, 4.76, 4.52], "annual": 4.75890411, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-26.2&lon=28.05&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=26.2&aspect=180&usehorizon=0"}, {"cc": "EG16", "city": "Cairo", "monthly": [4.25, 4.62, 5.2, 5.36, 5.25, 5.29, 5.31, 5.38, 5.37, 4.99, 4.57, 4.21], "annual": 4.98328767, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=30.04&lon=31.24&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-SARAH3&angle=30.04&aspect=0&usehorizon=0"}, {"cc": "BR17", "city": "Sao Paulo", "monthly": [3.76, 4.1, 3.98, 3.83, 3.51, 3.34, 3.6, 3.83, 3.95, 3.8, 3.91, 3.9], "annual": 3.78884932, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-23.55&lon=-46.63&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "ME18", "city": "Mexico City", "monthly": [5.13, 5.47, 5.49, 5.15, 4.63, 4.14, 4.12, 4.22, 4.14, 4.55, 4.83, 5.08], "annual": 4.74178082, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=19.43&lon=-99.13&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "New York", "monthly": [3.36, 4.02, 4.41, 4.44, 4.17, 4.15, 4.17, 4.06, 3.9, 3.42, 3.3, 2.81], "annual": 3.84835616, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=40.71&lon=-74.01&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "UK20", "city": "London", "monthly": [1.49, 2.21, 3.19, 4.13, 4.09, 4.04, 3.91, 3.54, 3.2, 2.38, 1.71, 1.3], "annual": 2.93454795, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=51.51&lon=-0.13&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "AU21", "city": "Sydney", "monthly": [4.51, 4.43, 4.19, 4.1, 3.9, 3.32, 3.85, 4.42, 4.85, 4.78, 4.64, 4.63], "annual": 4.30249315, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=-33.87&lon=151.21&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&angle=33.87&aspect=180&usehorizon=0"}, {"cc": "US19", "city": "Los Angeles", "monthly": [4.09, 4.65, 5.02, 5.35, 5.21, 5.32, 5.27, 5.42, 5.27, 4.86, 4.34, 3.79], "annual": 4.88147945, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=34.05&lon=-118.24&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Chicago", "monthly": [2.45, 3.45, 4.2, 4.57, 4.69, 4.74, 4.78, 4.61, 4.12, 3.28, 2.72, 2.13], "annual": 3.81232877, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=41.88&lon=-87.63&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Houston", "monthly": [3.37, 3.37, 3.96, 4.23, 4.19, 4.15, 4.09, 4.18, 4.01, 4.07, 3.45, 2.97], "annual": 3.83819178, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=29.76&lon=-95.37&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Phoenix", "monthly": [4.57, 5.12, 5.56, 5.78, 5.49, 5.15, 4.7, 4.79, 5.0, 5.12, 4.74, 4.2], "annual": 5.01536986, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=33.45&lon=-112.07&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Miami", "monthly": [3.81, 4.25, 4.64, 4.76, 4.48, 4.07, 4.26, 4.31, 4.19, 4.01, 3.83, 3.67], "annual": 4.18789041, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=25.76&lon=-80.19&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Seattle", "monthly": [1.66, 2.47, 3.22, 3.89, 4.14, 3.97, 4.56, 4.44, 3.93, 2.83, 1.8, 1.38], "annual": 3.19421918, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.61&lon=-122.33&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Boston", "monthly": [3.32, 4.03, 4.42, 4.37, 4.16, 4.02, 4.12, 4.14, 3.94, 3.36, 3.16, 2.74], "annual": 3.81391781, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=42.36&lon=-71.06&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Denver", "monthly": [4.67, 5.49, 5.64, 5.52, 5.0, 5.0, 4.91, 5.07, 5.18, 4.9, 4.68, 4.3], "annual": 5.02438356, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=39.74&lon=-104.99&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Atlanta", "monthly": [3.59, 3.74, 4.25, 4.62, 4.36, 4.14, 4.01, 3.96, 4.06, 4.04, 3.74, 3.02], "annual": 3.9600274, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=33.75&lon=-84.39&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Dallas", "monthly": [3.83, 3.86, 4.21, 4.33, 4.08, 4.36, 4.47, 4.52, 4.33, 4.16, 3.74, 3.36], "annual": 4.10589041, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=32.78&lon=-96.8&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "San Francisco", "monthly": [3.41, 4.21, 4.67, 5.44, 5.52, 5.64, 5.7, 5.67, 5.46, 4.69, 3.84, 3.03], "annual": 4.77473973, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=37.77&lon=-122.42&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}, {"cc": "US19", "city": "Minneapolis", "monthly": [3.19, 4.35, 4.54, 4.42, 4.31, 4.41, 4.6, 4.43, 4.13, 3.46, 2.96, 2.52], "annual": 3.93991781, "src": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.98&lon=-93.27&peakpower=1&loss=14&outputformat=json&raddatabase=PVGIS-ERA5&optimalangles=1"}], "scanners": [{"id": "m0", "label": "GE LOGIQ S8 R4 XDclear 2.0", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Radiology1; manufactured=12/2020; software=R4 2.3; active_mode=B-mode; probes=C1-6-D;9L-D;ML6-15-D; measured_off_connected_w=4; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_sta", "type": "measured", "activeW": 193.7, "idleW": 163.5, "offW": 4.0}, {"id": "m1", "label": "GE Vivid E90", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology1; manufactured=08/2022; software=204.97.0; active_mode=B-mode; probes=M5Sc-D;9L-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_o", "type": "measured", "activeW": 388.3, "idleW": 368.9, "offW": 16.0}, {"id": "m2", "label": "GE LOGIQ Fortis", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology3; manufactured=06/2022; software=R3 1.1; active_mode=B-mode; probes=M5Sc-D;L2-9-D; measured_off_connected_w=0.45; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup", "type": "measured", "activeW": 252.9, "idleW": 232.9, "offW": 0.45}, {"id": "m3", "label": "Philips EPIQ CVx", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology1; manufactured=04/2020; software=R7.0.5; active_mode=B-mode; probes=X5-1; measured_off_connected_w=57; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_", "type": "measured", "activeW": 380.3, "idleW": 339.9, "offW": 57.0}, {"id": "m4", "label": "Siemens ACUSON SC2000", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology2; manufactured=01/2018; software=VB21D; active_mode=B-mode; probes=4V1-C; measured_off_connected_w=52; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_", "type": "measured", "activeW": 644.6, "idleW": 580.9, "offW": 52.0}, {"id": "m5", "label": "GE Vivid E95", "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/", "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology3; manufactured=07/2022; software=204.91.0; active_mode=B-mode; probes=4Vc-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_sur", "type": "measured", "activeW": 384.2, "idleW": 347.6, "offW": 16.0}, {"id": "m6", "label": "GE Healthcare Voluson E10", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT15; operating_state_w=not_reported https://documents.cdn.ifixit.", "type": "rated", "ratedW": null, "ratedVA": 800.0}, {"id": "m7", "label": "GE Healthcare Voluson E8", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=tr", "type": "rated", "ratedW": null, "ratedVA": 800.0}, {"id": "m8", "label": "GE Healthcare Voluson E6", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=tr", "type": "rated", "ratedW": null, "ratedVA": 800.0}, {"id": "m9", "label": "GE Healthcare Voluson S10", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported https://docu", "type": "rated", "ratedW": null, "ratedVA": 900.0}, {"id": "m10", "label": "GE Healthcare Voluson S8", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported https://docu", "type": "rated", "ratedW": null, "ratedVA": 900.0}, {"id": "m11", "label": "GE Healthcare LOGIQ E10", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; original_rating=0.9kVA; operating_state_w=no", "type": "rated", "ratedW": null, "ratedVA": 900.0}, {"id": "m12", "label": "GE Healthcare LOGIQ P9", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported https://docum", "type": "rated", "ratedW": null, "ratedVA": 500.0}, {"id": "m13", "label": "GE Healthcare LOGIQ P7", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported https://docum", "type": "rated", "ratedW": null, "ratedVA": 500.0}, {"id": "m14", "label": "GE Healthcare Venue", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-14 p3-15; configuration=2018_Venue_not_all_future_Venue_variants; dock_cart_rating_sepa", "type": "rated", "ratedW": null, "ratedVA": 500.0}, {"id": "m15", "label": "GE Healthcare Vivid iq", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; comparison=max; docking_cart_has_separate_rating=true; operating_state_w=not_re", "type": "rated", "ratedW": null, "ratedVA": 150.0}, {"id": "m16", "label": "GE Healthcare Vivid T8", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; configuration=2018_service_manual; operating_state_w=not_reported https://docum", "type": "rated", "ratedW": null, "ratedVA": 400.0}, {"id": "m17", "label": "GE Healthcare LOGIQ e R8/R9", "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf", "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-7 p3-11; supply_rating=AC_adapter_maximum; software=R8.x.x_or_R9.x.x; not_measured_oper", "type": "rated", "ratedW": null, "ratedVA": 160.0}, {"id": "m18", "label": "Philips EPIQ Elite", "src": "https://www.documents.philips.com/assets/20230606/101324bc8e1e4f408827b0190130e12d.pdf", "note": "source_authorship=Philips; document=EPIQ Elite specifications p43 2023-06-06 asset; comparison=less_than; configuration_specific=true; battery_role=backup_and_transport; battery_scanning_runtime=not_established_by_this_rating; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported https://www.documents.philips.com/asse", "type": "rated", "ratedW": null, "ratedVA": 600.0}, {"id": "m19", "label": "Philips Affiniti 70", "src": "https://www.scribd.com/document/840556636/Affiniti-70-Specifications-ENG", "note": "source_authorship=Philips; source_host=third_party_OEM_specification_mirror; document=4522 991 71191 AUG2021 pp37-38; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; 2026_India_market_", "type": "rated", "ratedW": 450.0, "ratedVA": null}, {"id": "m20", "label": "Samsung Medison HERA W10", "src": "https://cdn.samsungsuite.com/wp-content/uploads/2024/02/07125549/HERA-W10-Info.pdf", "note": "source_authorship=Samsung; document=Hera W10 technical specifications; source_indexed_pdf=true; direct_browser_fetch=502_during_research; source_asset_date=2024-02; configuration=original_HERA_W10_not_all_revisions; nominal_current_source=3.33-8.00A; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported https://cdn.sa", "type": "rated", "ratedW": null, "ratedVA": 1400.0}, {"id": "m21", "label": "Canon Medical Aplio i800 EUS", "src": "https://www.olympus.co.uk/medical/rmt/media/Content/Content-MSD/Images/SRP-Pages/Aplio/G00097EN_Aplio-i800_Sell-Sheet_EN_v10-1_red.pdf", "note": "source_authorship=Olympus manufacturer-distributor sell_sheet naming Canon manufacturer; document=G00097EN 03/24; variant=EUS; do_not_apply_to_all_i800_configurations=true; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported; 2026_India_market_availability=not_verified https://www.olympus.co.uk/medical/rmt/media/Con", "type": "rated", "ratedW": null, "ratedVA": 1500.0}, {"id": "m22", "label": "Mindray DC-80", "src": "https://manualzz.com/doc/o/13sl0t/mindray-dc-80-service-manual-2-specifications", "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; regional_220-240V_service_manual_variant=true; other_V2_training_document_lists100-240V_not_merged=true https://manualzz.com", "type": "rated", "ratedW": null, "ratedVA": 800.0}, {"id": "m23", "label": "Mindray DC-70", "src": "https://manuals.plus/m/87e21711ed694de10853b23dbc9731ffb0425a4378e3515201a5c499497625c3.pdf", "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; document=DC70/DC70T/DC70Pro/DC70 service_manual; section=2.2.2.1; earlier_manual_voltage_bands=100-127_or220-240V; verify_actual_region_varia", "type": "rated", "ratedW": null, "ratedVA": 630.0}, {"id": "m24", "label": "Mindray DC-40", "src": "https://manualzz.com/doc/o/13sjoz/mindray-dc-40-service-manual-2-specifications", "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; configuration=15_or17_inch_monitor_service_manual; later_DC40_HD_variants_not_verified=true https://manualzz.com/doc/o/13sjo", "type": "rated", "ratedW": null, "ratedVA": 600.0}, {"id": "m25", "label": "Philips Affiniti CVx", "src": "https://www.documents.philips.com/assets/20211101/20eb08bd676f4b5bb7e4add30172ed88.pdf", "note": "source_authorship=Philips; document=4522 991 71451 SEP2021 p31; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; current_device_label_takes_precedence=true; 2026_India_market_availabili", "type": "rated", "ratedW": 450.0, "ratedVA": null}], "ref": [{"name": "LED tube light 20 W (Philips Ecofit T8)", "W": 20.0, "state": "rated", "src": "https://www.signify.com/global/prof/led-lamps-and-tubes/led-tubes/philips-ecofit-led-tubes-t8/929001940568_EU/product", "allday": false}, {"name": "Ceiling fan, conventional 1200 mm (Crompton HS)", "W": 50.0, "state": "rated, full speed", "src": "https://www.crompton.co.in/products/crompton-high-speed-hs-ceiling-fan", "allday": false}, {"name": "Ceiling fan, BLDC 1200 mm (Crompton Energion)", "W": 35.0, "state": "rated, full speed", "src": "https://www.crompton.co.in/products/crompton-energion-high-speed-bldc-ceiling-fan?variant=46587336065328", "allday": false}, {"name": "Monitor 24-inch (HP E24 G4)", "W": 26.0, "state": "typical (OEM)", "src": "https://h20195.www2.hp.com/v2/GetDocument.aspx?docname=c08986273", "allday": false}, {"name": "Laser printer (HP LaserJet MFP M234sdw)", "W": 439.0, "state": "while printing (OEM typical)", "src": "https://h20195.www2.hp.com/v2/GetDocument.aspx?docname=c07776262", "allday": false}, {"name": "Colour laser printer (HP LaserJet Pro 4303fdw)", "W": 585.0, "state": "while printing (OEM typical)", "src": "https://h20195.www2.hp.com/v2/GetDocument.aspx?docname=c08552032", "allday": false}, {"name": "Gel warmer, single bottle (Parker Thermasonic 82-01-20)", "W": 12.0, "state": "rated (thermostat duty unknown: upper bound)", "src": "https://www.parkerlabs.com/wp-content/uploads/2026/05/Thermasonic-Gel-Warmer-Single-Bottle-Instructions-For-Use-PM-082-0001H-3-23-26.pdf", "allday": false}, {"name": "Gel warmer, multi-bottle (Parker Thermasonic 83-03-20)", "W": 31.0, "state": "rated (thermostat duty unknown: upper bound)", "src": "https://www.parkerlabs.com/wp-content/uploads/2026/05/Thermasonic-Gel-Warmer-Multi-Bottle-Instructions-For-Use-PM-082-0003H-3-23-26.pdf", "allday": false}, {"name": "Router (TP-Link ER605)", "W": 7.94, "state": "maximum", "src": "https://www.tp-link.com/us/business-networking/vpn-router/er605/v2/", "allday": true}, {"name": "Wi-Fi access point (TP-Link EAP225)", "W": 10.5, "state": "maximum", "src": "https://www.tp-link.com/au/business-networking/management-platform/eap225/", "allday": true}, {"name": "CCTV recorder (Hikvision DS-7104HQHI-K1)", "W": 8.0, "state": "rated, without hard drive", "src": "https://www.hikvisionindia.com/product-detail/ds-7104hqhi-k1", "allday": true}, {"name": "Computer (Apple Mac mini M4, maximum)", "W": 65.0, "state": "maximum (upper bound)", "src": "https://support.apple.com/en-ie/103253", "allday": false}, {"name": "CR reader (Fujifilm FCR PRIMA T2)", "W": 190.0, "state": "rated consumption", "src": "https://www.fujifilm.com/br/en/healthcare/x-ray/computed-radiography/fcr-capsula-x", "allday": false}, {"name": "CR reader (Agfa CR 10-X), scanning", "W": 65.0, "state": "scanning", "src": "https://www.agfa.com/he/global/en/internet/he/library/libraryopen?ID=73920486", "allday": false}, {"name": "Dry film imager (Agfa Drystar 5302), printing", "W": 250.0, "state": "average while printing", "src": "https://www.agfa.com/he/global/en/internet/he/library/libraryopen?ID=31570744", "allday": false}, {"name": "Dry film imager (Agfa Drystar 5302), standby", "W": 70.0, "state": "standby", "src": "https://www.agfa.com/he/global/en/internet/he/library/libraryopen?ID=31570744", "allday": false}], "ac": [{"name": "1.0 ton 5-star inverter (LG AS-Q14ENZE)", "ratedW": 779.0, "src": "https://www.lg.com/in/air-conditioners/split-air-conditioners/as-q14enze-p/"}, {"name": "1.5 ton 5-star inverter (LG US-Q19JNZE1)", "ratedW": 1310.0, "src": "https://www.lg.com/in/air-conditioners/split-air-conditioners/us-q19jnze1/"}, {"name": "1.5 ton 5-star inverter (Godrej Q Series)", "ratedW": 1075.0, "src": "https://www.godrejenterprises.com/home-appliances/air-conditioners/split-ac/p/ac-1-5-t-tr-hic-18-z3-tg-va-iot-4"}, {"name": "2.0 ton 3-star inverter (LG US-Q24ENXE)", "ratedW": 2220.0, "src": "https://www.lg.com/in/air-conditioners/split-air-conditioners/us-q24enxe/"}, {"name": "1.0 ton fixed-speed, legacy (Daikin FTQ35)", "ratedW": 971.0, "src": "https://www.daikinindia.com/sites/default/files/Download%20Brochure/ftq-brochure-19319.pdf"}, {"name": "1.5 ton fixed-speed, legacy (Daikin FTQ50)", "ratedW": 1507.0, "src": "https://www.daikinindia.com/sites/default/files/Download%20Brochure/ftq-brochure-19319.pdf"}, {"name": "1.75 ton fixed-speed, legacy (Daikin FTQ60)", "ratedW": 1855.0, "src": "https://www.daikinindia.com/sites/default/files/Download%20Brochure/ftq-brochure-19319.pdf"}], "xray": [{"id": "x0", "label": "Fujifilm FDR Smart X - 40 kW capacitor-assisted generator", "inputKVA": 3.0, "mode": "continuous", "phase": "single", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x1", "label": "Fujifilm FDR Smart X - 40 kW UPS generator", "inputKVA": 1.0, "mode": "continuous", "phase": "single", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x2", "label": "Fujifilm FDR Smart X - 40 kW line-powered generator", "inputKVA": null, "mode": "momentary", "phase": "three", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x3", "label": "Fujifilm FDR Smart X - 52 kW line-powered generator", "inputKVA": null, "mode": "momentary", "phase": "three", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x4", "label": "Fujifilm FDR Smart X - 68 kW line-powered generator", "inputKVA": null, "mode": "momentary", "phase": "three", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x5", "label": "Fujifilm FDR Smart X - 82 kW line-powered generator", "inputKVA": null, "mode": "momentary", "phase": "three", "src": "https://www.fujifilm.com/au/en/healthcare/x-ray/general-radiography-system/fdr-smart-x"}, {"id": "x6", "label": "Fujifilm FDR Xair XD2000 - built-in lithium-polymer battery", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://asset.fujifilm.com/www/ca/files/2021-05/4727b921cd20c96654e427225fe70ad0/FDR_Xair.pdf"}, {"id": "x7", "label": "Fujifilm FDR AQRO - lithium-ion mobile DR", "inputKVA": null, "mode": "continuous", "phase": "", "src": "https://healthcaresolutions-us.fujifilm.com/products/diagnostic-imaging/digital-radiography/mobile-dr-systems/fdr-aqro/"}, {"id": "x8", "label": "Skanray SkanRAD 500 - 40 kW high-frequency floor-mounted DR", "inputKVA": null, "mode": "momentary", "phase": "three", "src": "https://world.skanray.com/product/skanrad-500/"}, {"id": "x18", "label": "Siemens MOBILETT Elara Max - standard 65 Ah lead-acid pack", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://content.doclib.siemens-healthineers.com/rest/v1/view?document-id=1041076"}, {"id": "x19", "label": "Siemens MOBILETT Elara Max - optional 90 Ah lead-acid pack", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://content.doclib.siemens-healthineers.com/rest/v1/view?document-id=1041076"}, {"id": "x20", "label": "Carestream DRX-Revolution - 20 lead-acid batteries", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://carestream.stylelabs.cloud/api/public/content/da65241d5b9c465c98f3338cc833f784?display=inline&v=4ebdb569"}, {"id": "x21", "label": "Carestream DRX-Rise - lithium-ion battery", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://carestream.stylelabs.cloud/api/public/content/da65241d5b9c465c98f3338cc833f784?display=inline&v=4ebdb569"}, {"id": "x22", "label": "GE AMX Navigate - OEM battery-use scenario 2024", "inputKVA": null, "mode": "continuous", "phase": "single", "src": "https://www.gehealthcare.com/en/about/newsroom/press-releases/ge-healthcare-showcases-commitment-to-sustainable-innovation-at-rsna-2024"}, {"id": "x23", "label": "Delft Light - battery portable chest X-ray current product", "inputKVA": null, "mode": "continuous", "phase": "", "src": "https://delftimaging.com/solutions/portable-x-rays/delft-light/"}, {"id": "x24", "label": "MinXray Impact Wireless - TR90BH lithium-ion generator with DR", "inputKVA": null, "mode": "continuous", "phase": "", "src": "https://www.minxray.com/impact-wireless"}, {"id": "x25", "label": "Micro-X Rover - LFP battery mobile DR 2022 configuration", "inputKVA": null, "mode": "continuous", "phase": "", "src": "https://www.micro-x.com/post/major-leagues-seattle-mariners-first-to-acquire-game-changing-technology"}, {"id": "x26", "label": "Skanray SkanMobile - 4 kW 100 mA high-frequency mobile X-ray", "inputKVA": null, "mode": "momentary", "phase": "", "src": "https://world.skanray.com/product/skanmobile/"}, {"id": "x27", "label": "BPL X-RAD 100 - 100 mA 8 kW line-frequency fixed X-ray", "inputKVA": null, "mode": "momentary", "phase": "", "src": "https://www.bplmedicaltechnologies.com/product-details/diagnostic-x-ray/high-frequency-x-ray/fixed/x-rad-100-ma/"}, {"id": "x28", "label": "BPL X-RAD 300 - 300 mA 24 kW line-frequency fixed X-ray", "inputKVA": null, "mode": "momentary", "phase": "", "src": "https://www.bplmedicaltechnologies.com/products/diagnostic-x-ray/"}, {"id": "x29", "label": "BPL X-RAD 500 - 500 mA 40 kW line-frequency fixed X-ray", "inputKVA": null, "mode": "momentary", "phase": "", "src": "https://www.bplmedicaltechnologies.com/products/diagnostic-x-ray/"}, {"id": "x30", "label": "BPL M-RAD 5.0 - 5 kW high-frequency mobile X-ray", "inputKVA": null, "mode": "momentary", "phase": "", "src": "https://www.bplmedicaltechnologies.com/product-details/diagnostic-x-ray/mobile/bpl-mrad-5-0-245/"}, {"id": "x39", "label": "Siemens Multix Fusion - 55 kW generator variant", "inputKVA": 94.0, "mode": "momentary", "phase": "three", "src": "https://content.doclib.siemens-healthineers.com/rest/v1/view?document-id=1078947"}, {"id": "x40", "label": "Siemens Multix Fusion - 65 kW generator variant", "inputKVA": 108.0, "mode": "momentary", "phase": "three", "src": "https://content.doclib.siemens-healthineers.com/rest/v1/view?document-id=1078947"}, {"id": "x41", "label": "Siemens Multix Fusion - 80 kW generator variant", "inputKVA": 127.0, "mode": "momentary", "phase": "three", "src": "https://content.doclib.siemens-healthineers.com/rest/v1/view?document-id=1078947"}, {"id": "x42", "label": "Philips MobileDiagnost wDR version 2.2 - 20 kW battery generator", "inputKVA": 1.5, "mode": "continuous", "phase": "single", "src": "https://www.documents.philips.com/assets/Instruction%20for%20Use/20220715/9a0bce3146034538957baed300a7e831.pdf?feed=ifu_docs_feed"}, {"id": "x43", "label": "Philips MobileDiagnost wDR version 2.2 - 40 kW battery generator", "inputKVA": 1.5, "mode": "continuous", "phase": "single", "src": "https://www.documents.philips.com/assets/Instruction%20for%20Use/20220715/9a0bce3146034538957baed300a7e831.pdf?feed=ifu_docs_feed"}, {"id": "x44", "label": "Fujifilm FDR Go PLUS - OEM battery mobile DR current product", "inputKVA": null, "mode": "continuous", "phase": "", "src": "https://healthcaresolutions-us.fujifilm.com/products/diagnostic-imaging/digital-radiography/mobile-dr-systems/fdr-go-plus/"}, {"id": "x48", "label": "GE HF Advantage Basic Z10002AN - legacy 32 kW high-frequency generator", "inputKVA": 32.0, "mode": "momentary", "phase": "three", "src": "https://www.scribd.com/document/890530604/HF-Advantage-Service-Manual-Rev-6"}, {"id": "x49", "label": "Philips DuraDiagnost 4 - M-Cabinet CXA 80 US planning variant", "inputKVA": 112.5, "mode": "branch", "phase": "three", "src": "https://www.documents.philips.com/doclib/enc/14699709/DuraDiagnost_4.pdf"}], "battery": {"name": "Loom Solar CAML-10051 WM, 51.2 V 100 Ah LFP (5.12 kWh nominal)", "kwh": 5.12, "dodPct": 80, "note": "Manufacturer page: 5.12 kWh nominal; 6,000 cycles at 80% depth of discharge. Continuous discharge power and inverter compatibility are not stated here.", "src": "https://www.loomsolar.com/products/100ah-5kwh-lifepo4-battery-for-home"}, "dieselCO2": {"v": 2.69191216, "scope": "direct combustion CO2 per litre of diesel (US EIA coefficient)", "src": "https://www.eia.gov/environment/emissions/co2_vol_mass.php"}};
 </script>
@@ -573,7 +678,56 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
   const setK = (k, v) => { const ps = k.split("."); let o = S; ps.slice(0, -1).forEach((p) => (o = o[p])); o[ps[ps.length - 1]] = v; };
   const country = () => D.countries.find((c) => c.code === S.country);
   const cities = () => D.cities.filter((c) => c.cc === S.country);
-  const cur = () => (country() && country().currency === "INR" ? "₹" : "");
+  const currencyCode = () => country() && country().name === "USA" ? "USD" : country() && country().currency === "INR" ? "INR" : "";
+  const cur = () => currencyCode() === "INR" ? "₹" : currencyCode() === "USD" ? "US$" : "";
+  const FX_REFERENCE = Object.freeze({ inrPerUsd: 95.81, date: "2026-09-25", released: "2026-09-28", source: "https://www.federalreserve.gov/releases/h10/current/" });
+  S.fx = { inrPerUsd: FX_REFERENCE.inrPerUsd, date: FX_REFERENCE.date, origin: "reference" };
+  const dateValid = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || "") && !Number.isNaN(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v;
+  const dateLabel = (v) => dateValid(v) ? new Date(v + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "date not entered";
+  function usdReference() {
+    if (currencyCode() !== "INR" || !has(S.money.quote) || Number(S.money.quote) < 0 || !has(S.fx.inrPerUsd) || Number(S.fx.inrPerUsd) <= 0 || !dateValid(S.fx.date)) return null;
+    const value = Number(S.money.quote) / Number(S.fx.inrPerUsd);
+    return Number.isFinite(value) ? { value, rate: Number(S.fx.inrPerUsd), date: S.fx.date, origin: S.fx.origin } : null;
+  }
+  function fxText() {
+    const x = usdReference();
+    return x ? `Approximate USD reference: US$${fmt(x.value, 0)} at INR ${x.rate}/US$, observed ${dateLabel(x.date)}; ${x.origin === "reference" ? "Federal Reserve H.10, released " + dateLabel(FX_REFERENCE.released) : "operator override; source attribution cleared"}. Presentation only, not a current or transaction rate.` : "";
+  }
+  function renderFX() {
+    $("#fx-block").hidden = currencyCode() !== "INR";
+    $("#fx-note").innerHTML = S.fx.origin === "reference"
+      ? `Reference: ₹${FX_REFERENCE.inrPerUsd}/US$, observed ${dateLabel(FX_REFERENCE.date)}; released ${dateLabel(FX_REFERENCE.released)}. ${link(FX_REFERENCE.source, "Federal Reserve H.10")}. Editing the rate or date clears this attribution.`
+      : "Operator override: source attribution is cleared. Enter the rate's date as well. The conversion is an approximate presentation reference, not a current transaction quote.";
+  }
+  const STEP_NAMES = ["Location", "Service & equipment", "Power plan", "Your plan"];
+  let currentStep = 0;
+  function stepNeeds(step) {
+    if (!R) return [];
+    if (step === 0) return S.country === "XX" && (!R.Y || !S.myYield.every((v) => has(v) && Number(v) > 0)) ? ["twelve positive monthly yields"] : [];
+    if (step === 1) return R.L.need || [];
+    if (step === 2) return [...new Set([...(R.Z.need || []), ...(R.B.need || []), ...(R.C.need || [])])].filter((v) => !/complete load|complete solar/.test(v));
+    return [];
+  }
+  function showStep(next, focus = true, message = "") {
+    currentStep = Math.max(0, Math.min(3, Number(next) || 0));
+    $$("[data-wizard-step]").forEach((el) => { el.hidden = Number(el.dataset.wizardStep) !== currentStep; });
+    $$(".step-list [data-step-target]").forEach((el) => {
+      if (Number(el.dataset.stepTarget) === currentStep) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
+      el.setAttribute("aria-label", `Step ${Number(el.dataset.stepTarget) + 1}: ${STEP_NAMES[Number(el.dataset.stepTarget)]}`);
+    });
+    $("#wizard-intro").hidden = currentStep !== 0;
+    $("#wizard-current").textContent = `Step ${currentStep + 1} of 4: ${STEP_NAMES[currentStep]}`;
+    $("#wizard-progress").value = currentStep + 1;
+    $("#wizard-back").disabled = currentStep === 0;
+    $("#wizard-next").hidden = currentStep === 3;
+    $("#wizard-next").textContent = currentStep < 3 ? `Next: ${currentStep === 0 ? "Service" : STEP_NAMES[currentStep + 1]}` : "Next";
+    $("#wizard-status").textContent = message;
+    if (focus) {
+      const heading = $(`[data-wizard-step="${currentStep}"] h2`);
+      if (heading) heading.focus({ preventScroll: true });
+      $("#wizard-navigation").scrollIntoView({ block: "start", behavior: "auto" });
+    }
+  }
 
   /* ---------- static fields ---------- */
   function renderStatic() {
@@ -592,11 +746,12 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     $("#f-backupH").hidden = S.plan.goal !== "gridopt";
     $("#f-autonomy").hidden = S.plan.goal !== "offgrid";
     $("#xray-on").checked = !!S.xray.on;
-    $("#cur1").textContent = cur() ? "₹" : "(your currency)";
+    $("#cur1").textContent = currencyCode() || "your local currency";
+    renderFX();
     const b = D.battery;
     $("#loom-note").textContent = `${b.name}: ${b.kwh} kWh nominal, ${b.dodPct}% depth of discharge per the manufacturer. Enter its continuous discharge and your inverter's efficiency from their datasheets.`;
     const c = country();
-    $("#ef-note").innerHTML = c && c.ef ? `${esc(c.name)}: ${c.ef.v} kg per kWh, ${esc(c.ef.scope)}${c.ef.date ? ", " + esc(c.ef.date) : ""}. ${link(c.ef.src)}` : "No grid emission factor is loaded for this location. Enter one below to compare CO₂.";
+    $("#ef-note").innerHTML = c && c.ef ? `${esc(c.name)}: ${c.ef.v} kg per kWh, ${esc(c.ef.scope)}${c.ef.date ? ", " + esc(c.ef.date) : ""}. ${link(c.ef.src)}` : "No grid emission factor is loaded for this location. No comparative CO₂ is calculated.";
     renderRows();
   }
 
@@ -612,14 +767,20 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     const tag = r.fp && r.fp[f] ? TAG[r.fp[f]] || "" : has(r[f]) ? TAG.you : "";
     return `<div class="field"><label for="${list}-${i}-${f}">${label} <span class="u">W</span></label><input id="${list}-${i}-${f}" data-list="${list}" data-i="${i}" data-f="${f}" type="number" min="0" step="0.1" value="${esc(r[f])}" class="need"><span class="tagline">${tag}</span></div>`;
   }
+  function scannerPowerLabel(r) {
+    return has(r.activeW) && has(r.idleW) ? `${fmt(r.activeW, 0)} W scanning · ${fmt(r.idleW, 0)} W idle${r.after === "plugged" && has(r.offW) ? " · " + fmt(r.offW, 0) + " W off, plugged in" : ""}` : "Enter or override the scanner's watts";
+  }
   function renderRows() {
+    const focusedId = document.activeElement && document.activeElement.id;
     // scanners
     $("#scanners").innerHTML = S.scanners.map((r, i) => {
       const m = D.scanners.find((s) => s.id === r.model);
       const rated = m && m.type === "rated";
       const ratedTxt = rated ? `Manufacturer rated input: ${m.ratedW ? m.ratedW + " W" : m.ratedVA + " VA"}. A rated input is not what the scanner draws in use, so enter measured values, or use the rated input as an upper bound.` : "";
+      const powerMissing = (r.model && (!has(r.activeW) || !has(r.idleW))) || (r.after === "plugged" && !has(r.offW));
+      const powerLabel = scannerPowerLabel(r);
       return `<div class="row">
-        <div class="rowhead"><strong>Scanner ${i + 1}</strong>${S.scanners.length > 1 ? `<button type="button" class="del" data-del="scanners" data-i="${i}">Remove</button>` : ""}</div>
+        <div class="rowhead"><strong>Scanner ${i + 1}</strong>${S.scanners.length > 1 ? `<button type="button" class="del" data-del="scanners" data-i="${i}" aria-label="Remove scanner ${i + 1}">Remove</button>` : ""}</div>
         <div class="grid2">
           <div class="field" style="grid-column:1/-1"><label for="scanners-${i}-model">Model</label><select id="scanners-${i}-model" data-list="scanners" data-i="${i}" data-f="model">${scannerOptions(r.model)}</select></div>
           <div class="field"><label for="scanners-${i}-qty">Machines</label><input id="scanners-${i}-qty" data-list="scanners" data-i="${i}" data-f="qty" type="number" min="0" step="1" value="${esc(r.qty)}"></div>
@@ -629,7 +790,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
             <option value=""${!r.after ? " selected" : ""}>Choose…</option><option value="idle"${r.after === "idle" ? " selected" : ""}>left on (idle)</option><option value="plugged"${r.after === "plugged" ? " selected" : ""}>switched off, still plugged in</option><option value="unplugged"${r.after === "unplugged" ? " selected" : ""}>switched off at the wall</option></select></div>
         </div>
         ${rated ? `<p class="hint">${esc(ratedTxt)}</p><label class="check" style="margin-top:6px"><input type="checkbox" data-bound="${i}"${r.bound ? " checked" : ""}> Use the rated input as an upper bound for scanning and idle</label>` : ""}
-        <div class="grid3" style="margin-top:10px">${wField("scanners", i, "activeW", "Scanning", r)}${wField("scanners", i, "idleW", "Idle", r)}${r.after === "plugged" ? wField("scanners", i, "offW", "Off, plugged in", r) : ""}</div>
+        <details class="power-readings"${powerMissing ? " open" : ""}><summary>Power readings <span class="u">${esc(powerLabel)}</span></summary><div class="grid3" style="margin-top:10px">${wField("scanners", i, "activeW", "Scanning", r)}${wField("scanners", i, "idleW", "Idle", r)}${r.after === "plugged" ? wField("scanners", i, "offW", "Off, plugged in", r) : ""}</div></details>
         ${m && m.type === "measured" ? `<p class="src">Measured B-mode configuration in Mujkic et al., Eur Radiol 2025, with the probes and software listed there; your unit may differ. ${link(m.src)}</p>` : rated ? `<p class="src">${link(m.src, "Manufacturer source")}</p>` : ""}
       </div>`;
     }).join("");
@@ -637,7 +798,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     // AC
     $("#acs").hidden = S.hasAC !== true;
     $("#acs").innerHTML = S.hasAC === true ? S.ac.map((a, i) => `<div class="row">
-        <div class="rowhead"><strong>Air-conditioner ${i + 1}</strong><button type="button" class="del" data-del="ac" data-i="${i}">Remove</button></div>
+        <div class="rowhead"><strong>Air-conditioner ${i + 1}</strong><button type="button" class="del" data-del="ac" data-i="${i}" aria-label="Remove air-conditioner ${i + 1}">Remove</button></div>
         <div class="grid2">
           <div class="field" style="grid-column:1/-1"><label for="ac-${i}-ref">Nameplate reference <span class="u">optional</span></label><select id="ac-${i}-ref" data-list="ac" data-i="${i}" data-f="ref"><option value="">Enter from my unit's nameplate</option>${D.ac.map((x, j) => `<option value="${j}"${String(a.ref) === String(j) ? " selected" : ""}>${esc(x.name)}: ${x.ratedW} W rated input</option>`).join("")}</select></div>
           <div class="field"><label for="ac-${i}-qty">Units</label><input id="ac-${i}-qty" data-list="ac" data-i="${i}" data-f="qty" type="number" min="0" step="1" value="${esc(a.qty)}"></div>
@@ -650,7 +811,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
 
     // other equipment
     $("#others").innerHTML = S.other.map((o, i) => `<div class="row">
-        <div class="rowhead"><strong>${esc(o.name || "Item")}</strong><button type="button" class="del" data-del="other" data-i="${i}">Remove</button></div>
+        <div class="rowhead"><strong>${esc(o.name || "Item")}</strong><button type="button" class="del" data-del="other" data-i="${i}" aria-label="Remove ${esc(o.name || "item " + (i + 1))}">Remove</button></div>
         <div class="grid3">
           ${o.ref === undefined ? `<div class="field" style="grid-column:1/-1"><label for="other-${i}-name">Name</label><input id="other-${i}-name" data-list="other" data-i="${i}" data-f="name" type="text" value="${esc(o.name)}"></div>` : ""}
           <div class="field"><label for="other-${i}-qty">Quantity</label><input id="other-${i}-qty" data-list="other" data-i="${i}" data-f="qty" type="number" min="0" step="1" value="${esc(o.qty)}"></div>
@@ -676,6 +837,8 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
         ${x.src ? `<p class="src">${link(x.src, "Manufacturer source")}</p>` : ""}
       </div>`;
     }
+    const focused = focusedId && document.getElementById(focusedId);
+    if (focused) focused.focus({ preventScroll: true });
   }
 
   /* ---------- results ---------- */
@@ -699,18 +862,18 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     const cards = [];
     cards.push(L.complete ? card("Energy use", fmt(L.daily, 1), "kWh per open day", `${fmt(L.annual, 0)} kWh a year · ${L.xray ? "non-X-ray " : ""}peak running ${fmt(L.peakW / 1000, 2)} kW`) : card("Energy use", "Waiting for inputs", "", shortNeed(L.need), true));
     if (Z.kWp !== undefined) {
-      const basis = S.plan.goal === "offgrid" ? `to cover ${MONTHS[Z.worstMonth]}, the lowest-yield month` : "to cover a year's use";
+      const basis = S.plan.goal === "offgrid" ? `Worst-month energy target (${MONTHS[Z.worstMonth]})` : "Annual energy target";
       const upper = Z.kWpUpper ? ` Up to ${fmt(Z.kWpUpper, 2)} kWp if all energy passes through the battery.` : " Battery losses not included.";
       cards.push(card("Solar array", fmt(Z.kWp, 2), "kWp", `${basis}.${upper}${Z.panels ? ` About ${Z.panels} × ${Z.panelWp} Wp panels.` : ""}`));
     } else cards.push(card("Solar array", "Waiting for inputs", "", shortNeed(Z.need), true));
     if (B.usable !== undefined) {
-      cards.push(card("Battery", fmt(B.usable, 1), "kWh usable", B.modules !== undefined ? `${B.modules} × ${S.sys.moduleKWh} kWh modules (${fmt(B.battKWh, 1)} kWh nominal)${B.modulesPower > B.modulesEnergy ? ", set by discharge power" : ""}. Energy and continuous-power screen; installation compatibility unverified.` : `${esc(B.basis)}. Module count needs ${esc(B.moduleNeed.join(", "))} (Advanced details).`));
+      cards.push(card("Battery", fmt(B.usable, 1), "kWh usable", B.modules !== undefined ? `${B.modules} × ${S.sys.moduleKWh} kWh ${B.modules === 1 ? "module" : "modules"} (${fmt(B.battKWh, 1)} kWh nominal)${B.modulesPower > B.modulesEnergy ? ", set by discharge power" : ""}. Energy and continuous-power screen; installation compatibility unverified.` : `${esc(B.basis)}. Module count needs ${esc(B.moduleNeed.join(", "))} (Power plan details).`));
     } else cards.push(card("Battery", "Waiting for inputs", "", shortNeed(B.need), true));
     // An entered quote is a budget reference, not a computed installed price or saving.
     const quoteReady = has(S.money.quote) && Number(S.money.quote) >= 0;
     cards.push(quoteReady
-      ? card("Installed quote", `${cur()}${fmt(S.money.quote, 0)}`, cur() ? "" : "in your currency", "Entered by you. Confirm equipment, installation, taxes and compatibility with your supplier.")
-      : card("Installed quote", "Enter a quote", "", "Optional, in Advanced details. Savings and payback are not calculated.", true));
+      ? card("Installed quote", `${cur()}${fmt(S.money.quote, 0)}`, currencyCode() || "in your currency", `Entered by you. Confirm equipment, installation, taxes and compatibility with your supplier.${usdReference() ? `<span class="usd-ref"><strong>≈ US$${fmt(usdReference().value, 0)}</strong><br>${esc(fxText().replace(/^Approximate USD reference: US\$[^ ]+ at /, ""))}</span>` : ""}`)
+      : card("Installed quote", "Enter a quote", "", "Optional, in Power plan → budget details. Savings and payback are not calculated.", true));
     $("#cards").innerHTML = cards.join("");
 
     // alerts: warnings, supply check, comparison notes, reduce-first
@@ -724,11 +887,17 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     if (B.dcKW !== undefined) al.push(["info", `Continuous battery discharge screen: ${fmt(B.dcKW, 2)} kW DC; ${B.modulesPower} module(s) at ${S.sys.moduleKW} kW each. Exposure pulses and installation compatibility need separate checks.`]);
     (B.notes || []).forEach((n) => al.push(["info", n]));
     if (S.plan.goal === "offgrid" && Z.kWp !== undefined) al.push(["warn", "Off-grid sizing uses monthly averages. Runs of cloudy days need an hourly check with measured load before buying equipment."]);
-    $("#alerts").innerHTML = al.map(([lv, t]) => `<div class="alert ${lv}">${esc(t)}</div>`).join("");
+    $("#alerts").innerHTML = al.filter(([lv, t]) => lv !== "info" || /service may pause/.test(t)).map(([lv, t]) => `<div class="alert ${lv}">${esc(t)}</div>`).join("");
+    $("#info-alerts").innerHTML = al.filter(([lv, t]) => lv === "info" && !/service may pause/.test(t)).map(([lv, t]) => `<p class="hint">${esc(t)}</p>`).join("");
+    $("#technical-notes").hidden = !$("#info-alerts").textContent.trim();
 
     // needs list
-    const needs = [...new Set([...(L.need || []), ...((Z.need || []).filter((x) => x !== "complete load inputs")), ...((B.need || []).filter((x) => x !== "complete load inputs")), ...((C.need || []).filter((x) => !/complete load/.test(x)))])];
-    $("#needs").innerHTML = needs.length ? `<div class="needs"><b>Still needed for a full plan</b><ul>${needs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : "";
+    const needs = [...new Set([...(L.need || []), ...((Z.need || []).filter((x) => x !== "complete load inputs")), ...((B.need || []).filter((x) => x !== "complete load inputs")), ...((C.need || []).filter((x) => !/complete load/.test(x))), ...(B.moduleNeed || []), ...(P.need || [])])];
+    const needsOpen = !!$("#needs details[open]");
+    $("#needs").innerHTML = needs.length ? `<details class="needs"${needsOpen ? " open" : ""}><summary>${needs.length} ${needs.length === 1 ? "input or check" : "inputs or checks"} still needed</summary><ul>${needs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>` : "";
+    $("#result-status").textContent = needs.length ? "Some targets are waiting for inputs. You can return to any step when the details are known." : "Energy and equipment targets are calculated from the entries above. Compatibility still needs confirmation.";
+    $$(".choice-grid input[type=radio]").forEach((el) => el.closest("label").classList.toggle("chosen", el.checked));
+    renderFX();
 
     // highlight empty required inputs in rows
     $$("input.need").forEach((el) => el.classList.toggle("missing", !has(el.value)));
@@ -762,6 +931,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     S.other.forEach((o) => { if (o.src) rows.push([o.name, `${o.W} W, ${o.state}`, "rated/typical", link(o.src)]); });
     if (S.xray.on && S.xray.src) rows.push(["X-ray supply", `${S.xray.inputKVA || "—"} kVA`, "rated", link(S.xray.src)]);
     if (S.sys.moduleKWh === D.battery.kwh && S.sys.dodPct === D.battery.dodPct) rows.push(["Battery module", `${D.battery.kwh} kWh, ${D.battery.dodPct}% depth`, "manufacturer", link(D.battery.src)]);
+    if (usdReference()) rows.push(["USD presentation reference", `INR ${S.fx.inrPerUsd}/US$, observed ${dateLabel(S.fx.date)}`, S.fx.origin === "reference" ? "published" : "operator override", S.fx.origin === "reference" ? link(FX_REFERENCE.source, "Federal Reserve H.10") : "Source attribution cleared"]);
     $("#sources").innerHTML = `<table><thead><tr><th>Item</th><th>Value</th><th>Type</th><th>Source</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${r[3]}</td></tr>`).join("")}</tbody></table><p class="hint">Everything else is your input. The research files, method and tests are in the project repository.</p>`;
   }
 
@@ -778,7 +948,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     if (S.xray.on) Ls.push(`X-ray: ${S.xray.label || "unit"}, ${v(S.xray.kwh)} kWh/day, input ${v(S.xray.inputKVA)} kVA; ${S.xray.phase || "unknown"} phase; ${S.xray.mode || "unknown"} input duration.`);
     Ls.push(L.complete ? `Energy: ${fmt(L.daily, 2)} kWh per open day; ${fmt(L.annual, 0)} kWh a year; peak running ${fmt(L.peakW / 1000, 2)} kW (X-ray supply checked separately).` : `Energy: not available (needs ${L.need.join("; ")})`);
     Ls.push(Z.kWp !== undefined ? `Solar energy target: ${fmt(Z.kWp, 2)} kWp (${S.plan.goal === "offgrid" ? "worst month" : "annual"} basis; storage losses excluded)${Z.kWpUpper != null ? "; " + fmt(Z.kWpUpper, 2) + " kWp upper energy target if all energy passes through the battery" : ""}.` : "Solar: not available.");
-    Ls.push(B.usable !== undefined ? `Battery target: ${fmt(B.usable, 2)} kWh usable${B.modules !== undefined ? `; ${B.modules} modules, ${fmt(B.battKWh, 2)} kWh nominal` : "; complete module count needs datasheet and power checks"}.` : "Battery: not available.");
+    Ls.push(B.usable !== undefined ? `Battery target: ${fmt(B.usable, 2)} kWh usable${B.modules !== undefined ? `; ${B.modules} ${B.modules === 1 ? "module" : "modules"}, ${fmt(B.battKWh, 2)} kWh nominal` : "; complete module count needs datasheet and power checks"}.` : "Battery: not available.");
     if (B.moduleNeed && B.moduleNeed.length) Ls.push(`Battery inputs/checks needed: ${B.moduleNeed.join("; ")}.`);
     if (B.note) Ls.push(B.note);
     if (P.xrayCheck) Ls.push(`X-ray numerical supply check: ${P.xrayCheck}`);
@@ -786,17 +956,26 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     if (P.continuousCheck && !L.xray) Ls.push(`Inverter numerical capacity check: ${P.continuousCheck}`);
     (L.warn || []).forEach((w) => Ls.push(`Warning: ${w}`));
     if (C.notes) C.notes.forEach((x) => Ls.push(x));
-    Ls.push(has(S.money.quote) && Number(S.money.quote) >= 0 ? `Installed quote: ${cur()}${fmt(S.money.quote, 0)}${cur() ? "" : " in your currency"}; entered by you, supplier scope and compatibility need confirmation.` : "Installed quote: not entered.");
+    Ls.push(has(S.money.quote) && Number(S.money.quote) >= 0 ? `Installed quote: ${cur()}${fmt(S.money.quote, 0)} ${currencyCode() || "in your local currency"}; entered by you, supplier scope and compatibility need confirmation.` : "Installed quote: not entered.");
+    if (fxText()) Ls.push(fxText());
     Ls.push("Savings, payback and avoided CO2 are not calculated. These require a validated time-of-use and battery-dispatch model with a matched-service baseline.");
     Ls.push("Planning targets are not a system design or guaranteed autonomy. No pilot savings or patient benefits have been measured.");
     return Ls.join("\n");
   }
-  window.SPS = { state: () => S, results: () => R, summary };
+  window.SPS = { state: () => S, results: () => R, summary, step: () => currentStep, showStep, fxReference: FX_REFERENCE, usdReference };
 
   /* ---------- events ---------- */
   function onInput(e) {
     const el = e.target;
-    if (el.dataset.k) { setK(el.dataset.k, el.type === "checkbox" ? el.checked : el.value); if (el.dataset.k === "plan.keepGenset") {} renderResults(); return; }
+    if (el.dataset.k) {
+      const editedReferenceRate = el.dataset.k === "fx.inrPerUsd" && S.fx.origin === "reference";
+      setK(el.dataset.k, el.type === "checkbox" ? el.checked : el.value);
+      if (el.dataset.k.startsWith("fx.")) {
+        S.fx.origin = "operator";
+        if (editedReferenceRate) { S.fx.date = ""; document.getElementById("fx.date").value = ""; }
+      }
+      renderResults(); return;
+    }
     if (el.dataset.yield !== undefined) { S.myYield[+el.dataset.yield] = el.value; renderResults(); return; }
     if (el.dataset.list) {
       const r = S[el.dataset.list][+el.dataset.i], f = el.dataset.f;
@@ -812,6 +991,10 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
         if (tagline) tagline.innerHTML = has(el.value) ? TAG.you : "";
         else { const label = field.querySelector("label"); label.querySelectorAll(".tag").forEach((x) => x.remove()); if (has(el.value)) label.insertAdjacentHTML("beforeend", " " + TAG.you); }
         if ((el.dataset.list === "ac" || el.dataset.list === "other") && !r.src) row.querySelectorAll(".src").forEach((x) => x.remove());
+        if (el.dataset.list === "scanners") {
+          const compactPower = row.querySelector(".power-readings summary .u");
+          if (compactPower) compactPower.textContent = scannerPowerLabel(r);
+        }
       }
       if (f === "name") { const h = el.closest(".row").querySelector(".rowhead strong"); if (h) h.textContent = el.value || "Item"; }
       renderResults(); return;
@@ -868,7 +1051,20 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
     }
   }
   function onClick(e) {
-    const t = e.target;
+    const t = e.target.closest("button, a") || e.target;
+    if (t.dataset.stepTarget !== undefined) {
+      e.preventDefault(); showStep(t.dataset.stepTarget);
+      if (t.dataset.openDetails) { const d = document.getElementById(t.dataset.openDetails); d.open = true; d.querySelector("summary").focus(); d.scrollIntoView({ block: "start" }); }
+      return;
+    }
+    if (t.id === "wizard-next") {
+      const missing = stepNeeds(currentStep);
+      const msg = missing.length ? `Some ${STEP_NAMES[currentStep].toLowerCase()} details are still missing or invalid. You can continue and return when they are known; dependent results will wait.` : "";
+      showStep(currentStep + 1, true, msg); return;
+    }
+    if (t.id === "wizard-back") { showStep(currentStep - 1); return; }
+    if (t.id === "reset-fx") { S.fx = { inrPerUsd: FX_REFERENCE.inrPerUsd, date: FX_REFERENCE.date, origin: "reference" }; renderStatic(); renderResults(); return; }
+    if (t.getAttribute && t.getAttribute("href") === "#how") { e.preventDefault(); $("#how").open = true; $("#h-how").focus(); $("#how").scrollIntoView({ block: "start" }); return; }
     if (t.dataset.del) { S[t.dataset.del].splice(+t.dataset.i, 1); if (t.dataset.del === "ac" && !S.ac.length) { S.hasAC = null; } renderStatic(); renderResults(); return; }
     if (t.id === "add-scanner") { S.scanners.push(blankScanner()); renderRows(); renderResults(); return; }
     if (t.id === "add-ac") { S.ac.push({ qty: "", ratedW: "", kwh: "", fp: {} }); renderRows(); renderResults(); return; }
@@ -876,7 +1072,7 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
       const v = $("#add-ref").value;
       if (v === "custom") S.other.push({ name: "", qty: "", W: "", hours: "", allday: false });
       else { const r = D.ref[+v]; S.other.push({ ref: +v, name: r.name, qty: "", W: r.W, hours: "", allday: !!r.allday, fp: "rated", state: r.state, src: r.src }); }
-      renderRows(); renderResults(); return;
+      renderRows(); $("#other-details").open = true; renderResults(); return;
     }
     if (t.id === "use-loom") { S.sys.moduleKWh = D.battery.kwh; S.sys.dodPct = D.battery.dodPct; renderStatic(); renderResults(); return; }
     if (t.id === "och") {
@@ -888,18 +1084,20 @@ window.SPS_DATA = {"built": "2026-09-30 23:51 UTC", "countries": [{"code": "IN",
       const txt = summary();
       const done = (ok) => toast(ok ? "Summary copied" : "Select the text below and copy it");
       try { navigator.clipboard.writeText(txt).then(() => done(true), fallback); } catch (err) { fallback(); }
-      function fallback() { let ta = $("#copybox"); if (!ta) { ta = document.createElement("textarea"); ta.id = "copybox"; ta.className = "copybox"; $(".result").appendChild(ta); } ta.value = txt; ta.select(); done(false); }
+      function fallback() { let ta = $("#copybox"); if (!ta) { ta = document.createElement("textarea"); ta.id = "copybox"; ta.className = "copybox"; ta.setAttribute("aria-label", "Summary to copy"); $(".result").appendChild(ta); } ta.value = txt; ta.focus(); ta.select(); done(false); }
     }
     if (t.id === "print") { $("#print-summary").textContent = summary(); window.print(); }
   }
   let tt = null;
   function toast(msg) { const el = $("#toast"); el.textContent = msg; el.hidden = false; clearTimeout(tt); tt = setTimeout(() => (el.hidden = true), 2600); }
 
+  window.addEventListener("beforeprint", () => { $("#print-summary").textContent = summary(); });
   document.addEventListener("input", onInput);
   document.addEventListener("change", onChange);
   document.addEventListener("click", onClick);
   renderStatic();
   renderResults();
+  showStep(0, false);
 })();
 
 </script>

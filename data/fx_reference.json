@@ -1,0 +1,12 @@
+{
+  "inr_per_usd": 95.81,
+  "observation_date": "2026-09-25",
+  "release_date": "2026-09-28",
+  "source": "Federal Reserve Board H.10 weekly foreign exchange rates, India/Rupee row",
+  "source_url": "https://www.federalreserve.gov/releases/h10/current/",
+  "methodology_url": "https://www.federalreserve.gov/releases/h10/about.htm",
+  "source_scope": "New York noon buying rate for cable transfers; dated reference, not 1 October spot or an executable transaction quote.",
+  "conversion_formula": "Indicative USD = INR / 95.81",
+  "display_label": "Indicative USD at INR 95.81/US$; Fed H.10, 25 Sep 2026 (released 28 Sep).",
+  "reference_observed_in_live_source": "Latest daily observation in the current H.10 release fetched during this audit; the current URL can update."
+}
