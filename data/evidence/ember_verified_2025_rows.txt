@@ -1,0 +1,6 @@
+Verified 1 October 2026. Source: https://files.ember-energy.org/public-downloads/yearly_full_release_long_format.csv
+Selectors: year 2025; Country or economy; Power sector emissions; CO2 intensity; unit gCO2/kWh. Compact CSV preserves exact official source rows.
+Pakistan 310.19; Sri Lanka 321.16; Philippines (the) 595.44 g/kWh. Divide by 1000 for kg/kWh.
+The source methodology describes modelled lifecycle CO2e: https://files.ember-energy.org/public-downloads/ember_electricity_data_methodology.pdf
+Reference only; do not treat as operational CO2 or marginal avoided emissions.
+Full retrieved CSV SHA-256: 259e1095ee8ffeaf0aff37ad557916ae1823a2da13312da50ba4cec6b4574c3b

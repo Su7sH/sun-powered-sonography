@@ -10,6 +10,12 @@ Cooling energy comes from an entered daily reading. Its rated electrical input i
 
 Annual energy uses days open per week divided by seven, multiplied by 365. Closed-day energy includes equipment explicitly left on. This is a schedule-based annual estimate, not an hourly operating log.
 
+## Reduce first
+
+The separate idle-versus-off comparison uses each included scanner's idle and off-connected readings multiplied by quantity and after-hours hours per open day. Only study measurements and operator readings qualify; rated-input upper bounds cannot establish this difference. Required readings and derived arithmetic must be finite. Closed-day differences, restart energy and emergency readiness are not modelled in this comparison, and the difference is not an achieved saving.
+
+The comparison itself does not alter the current load or solar/battery targets. To size a reduced load, the operator changes the after-hours state to switched off and supplies its applicable reading.
+
 ## Solar
 
 The 47 city-point monthly PVGIS records cover 21 countries, including 13 US cities. Each query models a 1 kWp system with 14% system losses. These losses are already included in PVOUT and are not applied a second time.
@@ -28,10 +34,10 @@ Simple numerical inverter comparisons do not establish electrical compatibility.
 
 ## Budget, carbon and outcomes
 
-The displayed installed budget is an operator-entered quote. No automatic savings, payback, avoided grid electricity, avoided fuel or avoided CO2 is calculated in this release. Those comparisons need a validated time-of-use and battery-dispatch model, applicable financial inputs and a matched-service baseline.
+The displayed installed budget is an operator-entered quote. Apart from the separate idle-versus-off scanner energy comparison, no automatic solar/battery savings, payback, avoided grid electricity, avoided fuel or avoided CO2 is calculated in this release. Those comparisons need a validated time-of-use and battery-dispatch model, applicable financial inputs and a matched-service baseline.
 
 US quotes are denominated in USD. For India, the same quote is displayed in INR with an approximate USD equivalent: INR divided by the entered INR-per-USD rate. The bundled Federal Reserve H.10 reference is 95.81 INR/USD, observed 25 September 2026 and released 28 September 2026. It is historical and indicative, not an executable transaction rate. A valid positive rate, dated observation and nonnegative quote are required. Operator changes clear numerical source attribution; country changes clear the quote to avoid relabelling an old amount in another currency.
 
 Published grid factors remain source references with their dates and scopes. India's operational CO2 factor is kept distinct from lifecycle CO2e factors. No full lifecycle calculation is provided.
 
-The proposed OCH pilot will establish its baseline after renovation and test energy, fuel, interruptions and waiting outcomes. All current planning calculations are prospective.
+The proposed Om Chaitanya Multi-Specialty Hospital (OCH) pilot will establish its baseline after renovation and test energy, fuel, interruptions and waiting outcomes. All current planning calculations are prospective.

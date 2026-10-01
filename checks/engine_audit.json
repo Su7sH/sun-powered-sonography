@@ -1,8 +1,8 @@
 {
   "candidate": "index.html",
-  "sha256": "d5bd5af605a195008b6a2bf27c74a7365dd0af4552c25216b6aa91a2f2794c15",
-  "engineSha256": "952bc001f1581d976052c9276aaf57070a013427a252a9362a3bbdf30fbde346",
-  "timestamp": "2026-10-01T00:50:42.361Z",
+  "sha256": "bb809cf9e974abdd7876d541cb242ff8c55ee6d6c26edd35dd5196125c50410a",
+  "engineSha256": "9dda26d2de85c7dd55522a42ac24d1da3e773e3145583ea940bed4c605a72774",
+  "timestamp": "2026-10-01T10:45:03.844Z",
   "cases": [
     {
       "name": "Entirely blank local inputs gate dependent outputs",
@@ -172,7 +172,8 @@
   "failCount": 0,
   "embeddedData": {
     "cities": 47,
-    "countries": 22,
+    "countries": 21,
+    "countryMenuChoices": 22,
     "usaCities": 13
   },
   "details": {

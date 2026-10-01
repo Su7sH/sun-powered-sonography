@@ -1,12 +1,12 @@
 {
-  "candidate": "/Users/su7sh/Documents/ChatGPT/RSNA Sustainability submission/publishing/repository/index.html",
+  "candidate": "index.html",
   "cases": [
     {
-      "name": "Embedded engine unchanged",
+      "name": "Embedded engine matches reviewed release",
       "pass": true
     },
     {
-      "name": "Embedded data unchanged",
+      "name": "Embedded data matches reviewed release",
       "pass": true
     },
     {

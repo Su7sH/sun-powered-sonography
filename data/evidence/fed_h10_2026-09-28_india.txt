@@ -1,0 +1,24 @@
+Federal Reserve H.10: retained India/Rupee evidence
+
+Source: https://www.federalreserve.gov/releases/h10/20260928/
+Publisher: Board of Governors of the Federal Reserve System
+Release date: 2026-09-28
+Observation used: 2026-09-25
+Fetched at: 2026-10-01T09:12:09Z
+SHA-256 of complete retrieved HTML: 8fe6bf827dab3e0f2bd0d1b6f8fd5f4ca68b408c47583e9f045d7a64139ce827
+
+Plain-text transcription of the relevant header and India row. Whitespace has
+been normalized; this is an excerpt, not the complete release or live data.
+
+Units: currency units per US dollar (India is not an asterisk-marked exception).
+COUNTRY | CURRENCY | Sep. 21 | Sep. 22 | Sep. 23 | Sep. 24 | Sep. 25
+INDIA | RUPEE | 95.8100 | 95.5900 | 95.7400 | 95.9600 | 95.8100
+
+Thus 1 USD = 95.8100 INR for 2026-09-25; indicative USD = INR / 95.81.
+This dated reference is not a 1 October spot price or a transaction quote.
+Methodology: https://www.federalreserve.gov/releases/h10/about.htm
+
+Discovery: the dated release appears as 20260928 in
+https://www.federalreserve.gov/releases/h10/releaseDates.json, linked by the
+Federal Reserve release-date page. The current-release URL may change:
+https://www.federalreserve.gov/releases/h10/current/

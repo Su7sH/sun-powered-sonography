@@ -1,0 +1,67 @@
+{
+  "candidate": "index.html",
+  "cases": [
+    {
+      "name": "Rated scanner export identifies each upper-bound state and its actual source",
+      "pass": true
+    },
+    {
+      "name": "A partial scanner override preserves untouched upper-bound evidence",
+      "pass": true
+    },
+    {
+      "name": "Zero-quantity scanner never triggers an upper-bound results warning",
+      "pass": true
+    },
+    {
+      "name": "Overriding every relevant scanner power removes the upper-bound results warning",
+      "pass": true
+    },
+    {
+      "name": "Measured scanner states retain study source and configuration qualification",
+      "pass": true
+    },
+    {
+      "name": "Results source table distinguishes an overridden state from retained study data",
+      "pass": true
+    },
+    {
+      "name": "Solar export preserves all twelve modelled yields, query and included losses",
+      "pass": true
+    },
+    {
+      "name": "Own yield export remains operator-supplied and never claims PVGIS evidence",
+      "pass": true
+    },
+    {
+      "name": "Storage and inverter export includes every input needed to reproduce sizing",
+      "pass": true
+    },
+    {
+      "name": "Manual equality never assigns reference-battery provenance; button does",
+      "pass": true
+    },
+    {
+      "name": "Editing one battery reference field clears only that field provenance",
+      "pass": true
+    },
+    {
+      "name": "Air-conditioning and peripheral exports distinguish energy from rated evidence",
+      "pass": true
+    },
+    {
+      "name": "X-ray export preserves supply source separately from entered daily energy",
+      "pass": true
+    },
+    {
+      "name": "FX export links dated reference evidence only until an operator overrides it",
+      "pass": true
+    },
+    {
+      "name": "Blank inputs remain explicitly unknown without manufactured source labels",
+      "pass": true
+    }
+  ],
+  "passed": 15,
+  "total": 15
+}

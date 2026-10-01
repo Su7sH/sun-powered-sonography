@@ -3,10 +3,14 @@
   "observation_date": "2026-09-25",
   "release_date": "2026-09-28",
   "source": "Federal Reserve Board H.10 weekly foreign exchange rates, India/Rupee row",
-  "source_url": "https://www.federalreserve.gov/releases/h10/current/",
+  "source_url": "https://www.federalreserve.gov/releases/h10/20260928/",
   "methodology_url": "https://www.federalreserve.gov/releases/h10/about.htm",
   "source_scope": "New York noon buying rate for cable transfers; dated reference, not 1 October spot or an executable transaction quote.",
   "conversion_formula": "Indicative USD = INR / 95.81",
   "display_label": "Indicative USD at INR 95.81/US$; Fed H.10, 25 Sep 2026 (released 28 Sep).",
-  "reference_observed_in_live_source": "Latest daily observation in the current H.10 release fetched during this audit; the current URL can update."
+  "reference_observed_in_live_source": "Verified against the dated 28 September 2026 H.10 release; the current-release URL may update.",
+  "current_release_url": "https://www.federalreserve.gov/releases/h10/current/",
+  "retained_evidence": "data/evidence/fed_h10_2026-09-28_india.txt",
+  "source_fetched_at_utc": "2026-10-01T09:12:09Z",
+  "source_html_sha256": "8fe6bf827dab3e0f2bd0d1b6f8fd5f4ca68b408c47583e9f045d7a64139ce827"
 }

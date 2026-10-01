@@ -1,0 +1,63 @@
+{
+  "candidate": "index.html",
+  "cases": [
+    {
+      "name": "[CF-06] Reduce-first line is shown as a visible alert, not inside the collapsed notes",
+      "pass": true
+    },
+    {
+      "name": "[CF-02] Reduce-first wording is an energy difference, never a saving claim",
+      "pass": true
+    },
+    {
+      "name": "[CF-06] Exported summary carries the same reduce-first line and keeps the no-savings scope",
+      "pass": true
+    },
+    {
+      "name": "[CF-06] Own scanner left on: estimate waits for the off reading, then uses the entered values",
+      "pass": true
+    },
+    {
+      "name": "[CF-06] Off reading is optional when left on, required when switched off but plugged in, absent when unplugged",
+      "pass": true
+    },
+    {
+      "name": "[CF-06] No estimate when the off reading is not below the idle reading",
+      "pass": true
+    },
+    {
+      "name": "[CF-08] Status separates waiting targets from further checks",
+      "pass": true
+    },
+    {
+      "name": "[CF-08] Each missing input is listed once; engine cross-references are not shown",
+      "pass": true
+    },
+    {
+      "name": "[CF-09] Exported summary prints on-screen wording, not stored option codes",
+      "pass": true
+    },
+    {
+      "name": "[CF-11] Panel count names the target it belongs to",
+      "pass": true
+    },
+    {
+      "name": "[CF-07] Monthly balance and reference table sit on the results step",
+      "pass": true
+    },
+    {
+      "name": "[CF-05] Federal Reserve reference links to a dated release",
+      "pass": true
+    },
+    {
+      "name": "[CF-19] Page keeps a level-one heading on every step",
+      "pass": true
+    },
+    {
+      "name": "[CF-22] Narrow screens stack the reference table",
+      "pass": true
+    }
+  ],
+  "passed": 14,
+  "total": 14
+}

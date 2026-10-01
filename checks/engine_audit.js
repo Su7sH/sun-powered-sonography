@@ -146,7 +146,7 @@ const details={
 };
 const report={candidate:path.relative(process.cwd(),candidate),sha256:crypto.createHash('sha256').update(html).digest('hex'),engineSha256:crypto.createHash('sha256').update(engine).digest('hex'),
   timestamp:new Date().toISOString(),cases,passCount:cases.filter(c=>c.pass).length,failCount:cases.filter(c=>!c.pass).length,
-  embeddedData:{cities:D.cities.length,countries:D.countries.length,usaCities:D.cities.filter(c=>c.cc==='US19').length},details};
+  embeddedData:{cities:D.cities.length,countries:new Set(D.cities.map(c=>c.cc)).size,countryMenuChoices:D.countries.length,usaCities:D.cities.filter(c=>c.cc==='US19').length},details};
 fs.writeFileSync(path.join(__dirname,'engine_audit.json'),JSON.stringify(report,null,2)+'\n');
 for(const t of cases)console.log(`${t.pass?'PASS':'FAIL'} ${t.name}${t.error?' :: '+t.error:''}`);
 console.log(JSON.stringify({pass:report.passCount,fail:report.failCount,sha256:report.sha256,embeddedData:report.embeddedData}));

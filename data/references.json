@@ -1207,7 +1207,7 @@
       "id": "m0",
       "label": "GE LOGIQ S8 R4 XDclear 2.0",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Radiology1; manufactured=12/2020; software=R4 2.3; active_mode=B-mode; probes=C1-6-D;9L-D;ML6-15-D; measured_off_connected_w=4; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_sta",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Radiology1; manufactured=12/2020; software=R4 2.3; active_mode=B-mode; probes=C1-6-D;9L-D;ML6-15-D; measured_off_connected_w=4; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 193.7,
       "idleW": 163.5,
@@ -1217,7 +1217,7 @@
       "id": "m1",
       "label": "GE Vivid E90",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology1; manufactured=08/2022; software=204.97.0; active_mode=B-mode; probes=M5Sc-D;9L-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_o",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology1; manufactured=08/2022; software=204.97.0; active_mode=B-mode; probes=M5Sc-D;9L-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 388.3,
       "idleW": 368.9,
@@ -1227,7 +1227,7 @@
       "id": "m2",
       "label": "GE LOGIQ Fortis",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology3; manufactured=06/2022; software=R3 1.1; active_mode=B-mode; probes=M5Sc-D;L2-9-D; measured_off_connected_w=0.45; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Neurology3; manufactured=06/2022; software=R3 1.1; active_mode=B-mode; probes=M5Sc-D;L2-9-D; measured_off_connected_w=0.45; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 252.9,
       "idleW": 232.9,
@@ -1237,7 +1237,7 @@
       "id": "m3",
       "label": "Philips EPIQ CVx",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology1; manufactured=04/2020; software=R7.0.5; active_mode=B-mode; probes=X5-1; measured_off_connected_w=57; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology1; manufactured=04/2020; software=R7.0.5; active_mode=B-mode; probes=X5-1; measured_off_connected_w=57; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 380.3,
       "idleW": 339.9,
@@ -1247,7 +1247,7 @@
       "id": "m4",
       "label": "Siemens ACUSON SC2000",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology2; manufactured=01/2018; software=VB21D; active_mode=B-mode; probes=4V1-C; measured_off_connected_w=52; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology2; manufactured=01/2018; software=VB21D; active_mode=B-mode; probes=4V1-C; measured_off_connected_w=52; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 644.6,
       "idleW": 580.9,
@@ -1257,7 +1257,7 @@
       "id": "m5",
       "label": "GE Vivid E95",
       "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12712049/",
-      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology3; manufactured=07/2022; software=204.91.0; active_mode=B-mode; probes=4Vc-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_sur",
+      "note": "primary_peer_reviewed=true; source_table=1-2; device_id=Cardiology3; manufactured=07/2022; software=204.91.0; active_mode=B-mode; probes=4Vc-D; measured_off_connected_w=16; standby_numeric_blank=off-connected is not deep standby; source_idle_state=paper-labelled idle; freeze_not_separately_quantified=true; measurement_accuracy=plus/minus 1-10 percent; configuration_specific=true; no_startup_or_surge_rating=true; classification=editorial form-factor label; online_publication=2025-07-15; issue_year=2026",
       "type": "measured",
       "activeW": 384.2,
       "idleW": 347.6,
@@ -1267,7 +1267,7 @@
       "id": "m6",
       "label": "GE Healthcare Voluson E10",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT15; operating_state_w=not_reported https://documents.cdn.ifixit.",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT15; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 800.0
@@ -1276,7 +1276,7 @@
       "id": "m7",
       "label": "GE Healthcare Voluson E8",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=tr",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=true; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 800.0
@@ -1285,7 +1285,7 @@
       "id": "m8",
       "label": "GE Healthcare Voluson E6",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=tr",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; model_type=>BT13; older_BT13_or_below_has_different_electrical_requirements=true; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 800.0
@@ -1294,7 +1294,7 @@
       "id": "m9",
       "label": "GE Healthcare Voluson S10",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported https://docu",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 900.0
@@ -1303,7 +1303,7 @@
       "id": "m10",
       "label": "GE Healthcare Voluson S8",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported https://docu",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-6 p3-10; configuration=2018_service_manual; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 900.0
@@ -1312,7 +1312,7 @@
       "id": "m11",
       "label": "GE Healthcare LOGIQ E10",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; original_rating=0.9kVA; operating_state_w=no",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; original_rating=0.9kVA; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 900.0
@@ -1321,7 +1321,7 @@
       "id": "m12",
       "label": "GE Healthcare LOGIQ P9",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported https://docum",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 500.0
@@ -1330,7 +1330,7 @@
       "id": "m13",
       "label": "GE Healthcare LOGIQ P7",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported https://docum",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-3 p3-7; configuration=2018_service_manual; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 500.0
@@ -1339,7 +1339,7 @@
       "id": "m14",
       "label": "GE Healthcare Venue",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-14 p3-15; configuration=2018_Venue_not_all_future_Venue_variants; dock_cart_rating_sepa",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-14 p3-15; configuration=2018_Venue_not_all_future_Venue_variants; dock_cart_rating_separate=380VA; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 500.0
@@ -1348,7 +1348,7 @@
       "id": "m15",
       "label": "GE Healthcare Vivid iq",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; comparison=max; docking_cart_has_separate_rating=true; operating_state_w=not_re",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; comparison=max; docking_cart_has_separate_rating=true; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 150.0
@@ -1357,7 +1357,7 @@
       "id": "m16",
       "label": "GE Healthcare Vivid T8",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; configuration=2018_service_manual; operating_state_w=not_reported https://docum",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-5 p3-9; configuration=2018_service_manual; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 400.0
@@ -1366,7 +1366,7 @@
       "id": "m17",
       "label": "GE Healthcare LOGIQ e R8/R9",
       "src": "https://documents.cdn.ifixit.com/EUfNWSIiVNgGeRGR.pdf",
-      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-7 p3-11; supply_rating=AC_adapter_maximum; software=R8.x.x_or_R9.x.x; not_measured_oper",
+      "note": "source_authorship=GE Healthcare; source_host=third_party_OEM_manual_mirror; document=Common Service Information 5444964-100 Rev5 2018-08-21; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; device_label_and_current_vendor_spec_take_precedence=true; table=3-7 p3-11; supply_rating=AC_adapter_maximum; software=R8.x.x_or_R9.x.x; not_measured_operating_load=true; charging_may_be_included=true; docking_cart_rating_separate=350VA; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 160.0
@@ -1375,7 +1375,7 @@
       "id": "m18",
       "label": "Philips EPIQ Elite",
       "src": "https://www.documents.philips.com/assets/20230606/101324bc8e1e4f408827b0190130e12d.pdf",
-      "note": "source_authorship=Philips; document=EPIQ Elite specifications p43 2023-06-06 asset; comparison=less_than; configuration_specific=true; battery_role=backup_and_transport; battery_scanning_runtime=not_established_by_this_rating; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported https://www.documents.philips.com/asse",
+      "note": "source_authorship=Philips; document=EPIQ Elite specifications p43 2023-06-06 asset; comparison=less_than; configuration_specific=true; battery_role=backup_and_transport; battery_scanning_runtime=not_established_by_this_rating; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 600.0
@@ -1384,7 +1384,7 @@
       "id": "m19",
       "label": "Philips Affiniti 70",
       "src": "https://www.scribd.com/document/840556636/Affiniti-70-Specifications-ENG",
-      "note": "source_authorship=Philips; source_host=third_party_OEM_specification_mirror; document=4522 991 71191 AUG2021 pp37-38; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; 2026_India_market_",
+      "note": "source_authorship=Philips; source_host=third_party_OEM_specification_mirror; document=4522 991 71191 AUG2021 pp37-38; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true",
       "type": "rated",
       "ratedW": 450.0,
       "ratedVA": null
@@ -1393,7 +1393,7 @@
       "id": "m20",
       "label": "Samsung Medison HERA W10",
       "src": "https://cdn.samsungsuite.com/wp-content/uploads/2024/02/07125549/HERA-W10-Info.pdf",
-      "note": "source_authorship=Samsung; document=Hera W10 technical specifications; source_indexed_pdf=true; direct_browser_fetch=502_during_research; source_asset_date=2024-02; configuration=original_HERA_W10_not_all_revisions; nominal_current_source=3.33-8.00A; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported https://cdn.sa",
+      "note": "source_authorship=Samsung; document=Hera W10 technical specifications; source_indexed_pdf=true; direct_browser_fetch=502_during_research; source_asset_date=2024-02; configuration=original_HERA_W10_not_all_revisions; nominal_current_source=3.33-8.00A; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 1400.0
@@ -1402,7 +1402,7 @@
       "id": "m21",
       "label": "Canon Medical Aplio i800 EUS",
       "src": "https://www.olympus.co.uk/medical/rmt/media/Content/Content-MSD/Images/SRP-Pages/Aplio/G00097EN_Aplio-i800_Sell-Sheet_EN_v10-1_red.pdf",
-      "note": "source_authorship=Olympus manufacturer-distributor sell_sheet naming Canon manufacturer; document=G00097EN 03/24; variant=EUS; do_not_apply_to_all_i800_configurations=true; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported; 2026_India_market_availability=not_verified https://www.olympus.co.uk/medical/rmt/media/Con",
+      "note": "source_authorship=Olympus manufacturer-distributor sell_sheet naming Canon manufacturer; document=G00097EN 03/24; variant=EUS; do_not_apply_to_all_i800_configurations=true; rating_is_not_measured_running_w=true; rated_va_not_w=true; current_device_label_takes_precedence=true; operating_state_w=not_reported; 2026_India_market_availability=not_verified",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 1500.0
@@ -1411,7 +1411,7 @@
       "id": "m22",
       "label": "Mindray DC-80",
       "src": "https://manualzz.com/doc/o/13sl0t/mindray-dc-80-service-manual-2-specifications",
-      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; regional_220-240V_service_manual_variant=true; other_V2_training_document_lists100-240V_not_merged=true https://manualzz.com",
+      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; regional_220-240V_service_manual_variant=true; other_V2_training_document_lists100-240V_not_merged=true",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 800.0
@@ -1420,7 +1420,7 @@
       "id": "m23",
       "label": "Mindray DC-70",
       "src": "https://manuals.plus/m/87e21711ed694de10853b23dbc9731ffb0425a4378e3515201a5c499497625c3.pdf",
-      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; document=DC70/DC70T/DC70Pro/DC70 service_manual; section=2.2.2.1; earlier_manual_voltage_bands=100-127_or220-240V; verify_actual_region_varia",
+      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; document=DC70/DC70T/DC70Pro/DC70 service_manual; section=2.2.2.1; earlier_manual_voltage_bands=100-127_or220-240V; verify_actual_region_variant=true",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 630.0
@@ -1429,7 +1429,7 @@
       "id": "m24",
       "label": "Mindray DC-40",
       "src": "https://manualzz.com/doc/o/13sjoz/mindray-dc-40-service-manual-2-specifications",
-      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; configuration=15_or17_inch_monitor_service_manual; later_DC40_HD_variants_not_verified=true https://manualzz.com/doc/o/13sjo",
+      "note": "source_authorship=Mindray; source_host=third_party_OEM_service_manual_mirror; rating_is_not_measured_running_w=true; rated_va_not_w=true; 2026_India_market_availability=not_verified; current_device_label_takes_precedence=true; operating_state_w=not_reported; section=2.2.2.1; configuration=15_or17_inch_monitor_service_manual; later_DC40_HD_variants_not_verified=true",
       "type": "rated",
       "ratedW": null,
       "ratedVA": 600.0
@@ -1438,7 +1438,7 @@
       "id": "m25",
       "label": "Philips Affiniti CVx",
       "src": "https://www.documents.philips.com/assets/20211101/20eb08bd676f4b5bb7e4add30172ed88.pdf",
-      "note": "source_authorship=Philips; document=4522 991 71451 SEP2021 p31; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; current_device_label_takes_precedence=true; 2026_India_market_availabili",
+      "note": "source_authorship=Philips; document=4522 991 71451 SEP2021 p31; comparison=up_to; battery_role=backup; battery_scanning_runtime=not_established; rating_is_not_measured_running_w=true; OEM_on_mode_w=268; OEM_off_mode_w=6; OEM_battery_charging_w=24; on_mode_test_configuration_unspecified=true; off_mode_is_not_deep_standby=true; current_device_label_takes_precedence=true; 2026_India_market_availability=not_verified",
       "type": "rated",
       "ratedW": 450.0,
       "ratedVA": null
@@ -1533,7 +1533,7 @@
       "name": "CR reader (Fujifilm FCR PRIMA T2)",
       "W": 190.0,
       "state": "rated consumption",
-      "src": "https://www.fujifilm.com/br/en/healthcare/x-ray/computed-radiography/fcr-capsula-x",
+      "src": "https://www.fujifilm.com/br/en/parts/common/659",
       "allday": false
     },
     {

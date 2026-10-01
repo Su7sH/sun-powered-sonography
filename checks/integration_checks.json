@@ -1,0 +1,51 @@
+{
+  "candidate": "index.html",
+  "cases": [
+    {
+      "name": "Rated idle upper bound never produces an avoided-energy estimate",
+      "pass": true
+    },
+    {
+      "name": "Missing origin flags cannot be guessed as measured readings",
+      "pass": true
+    },
+    {
+      "name": "Operator idle reading can compare with measured off reading after partial override",
+      "pass": true
+    },
+    {
+      "name": "Active nameplate bound does not contaminate a separate genuine idle-off comparison",
+      "pass": true
+    },
+    {
+      "name": "A missing reading in another idle scanner prevents a silent partial total",
+      "pass": true
+    },
+    {
+      "name": "Zero-quantity rows neither contribute nor block the energy difference",
+      "pass": true
+    },
+    {
+      "name": "Nonfinite or negative optional readings suppress the estimate",
+      "pass": true
+    },
+    {
+      "name": "Finite inputs whose idle-off product overflows never export infinity",
+      "pass": true
+    },
+    {
+      "name": "Reduce-first comparison never silently resizes the existing PV target",
+      "pass": true
+    },
+    {
+      "name": "Embedded data equals companion references file, with full source notes",
+      "pass": true
+    },
+    {
+      "name": "Confirmed hospital name appears without inventing measured pilot outcomes",
+      "pass": true
+    }
+  ],
+  "passed": 11,
+  "total": 11
+}

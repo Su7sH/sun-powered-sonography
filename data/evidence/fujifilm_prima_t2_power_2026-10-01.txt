@@ -1,0 +1,19 @@
+Fujifilm FCR comparison: retained PRIMA T2 power evidence
+
+Direct manufacturer comparison table: https://www.fujifilm.com/br/en/parts/common/659
+Parent product page: https://www.fujifilm.com/br/en/healthcare/x-ray/computed-radiography/fcr-capsula-x
+Fetched at: 2026-10-01T09:11:38Z
+SHA-256 of complete retrieved comparison HTML: 9588a0d7feccbfd15fd4d745920ca6108eb73b32eb1fdddcd88c53dd4ce96e8c
+SHA-256 of complete parent page HTML: 9a8640edd67e373f4ec476e053043e358c2c696e3d37cf455678b6f6ac1f836b
+
+Plain-text transcription of the relevant table header and power row.
+Whitespace has been normalized; this is an excerpt, not a complete datasheet.
+
+Table: Compare specifications with other FCR products
+Product | PRIMA T2 | PRIMA II | CAPSULA X | CAPSULA XLII | XG5000 Plus | PROFECT CS Plus
+Power Consumption (kW) | 0.19 | 0.17 | 0.2 | 0.29 | 0.7 | 0.7
+
+PRIMA T2: 0.19 kW = 190 W. This supports the existing numerical reference.
+The table does not give a measured local duty cycle or active/standby split.
+The parent page includes this table via a common-content component pointing
+to the direct manufacturer URL above. Static page extractors may omit it.
