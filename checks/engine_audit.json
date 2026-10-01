@@ -1,0 +1,218 @@
+{
+  "candidate": "index.html",
+  "sha256": "d9f9a2aa505d3ac6038e1857c4d02b428a3f7eab44fb5126a0cc8752930c5bc2",
+  "engineSha256": "952bc001f1581d976052c9276aaf57070a013427a252a9362a3bbdf30fbde346",
+  "timestamp": "2026-10-01T00:20:26.004Z",
+  "cases": [
+    {
+      "name": "Entirely blank local inputs gate dependent outputs",
+      "pass": true,
+      "detail": {
+        "need": [
+          "opening and closing time within 0-24 h",
+          "days open per week, greater than 0 and at most 7",
+          "Scanner 1: a nonnegative whole number of machines, nonnegative scans per day, minutes per scan, positive when scans are planned, nonnegative power while scanning (W), nonnegative power while idle (W), what happens after hours",
+          "whether the room has air-conditioning"
+        ]
+      }
+    },
+    {
+      "name": "Missing scanner scanning watts gate the full load",
+      "pass": true
+    },
+    {
+      "name": "Unknown AC presence gates the load",
+      "pass": true
+    },
+    {
+      "name": "Plugged-off state requires its own watts",
+      "pass": true
+    },
+    {
+      "name": "One-scanner active and idle hours reconcile independently",
+      "pass": true,
+      "detail": {
+        "daily": 0.75,
+        "annual": 273.75
+      }
+    },
+    {
+      "name": "Scans per day are shared across two machines",
+      "pass": true,
+      "detail": {
+        "daily": 1.25
+      }
+    },
+    {
+      "name": "Scanner throughput is capped with an explicit warning",
+      "pass": true,
+      "detail": {
+        "warning": [
+          "Test scanner: 100 scans × 30 min need 50.0 h per machine, but the service is open 10 h. Only 10 h of scanning is counted."
+        ]
+      }
+    },
+    {
+      "name": "Plugged-off energy includes closed days",
+      "pass": true,
+      "detail": {
+        "annual": 369.1714285714286
+      }
+    },
+    {
+      "name": "AC metered energy and nameplate peak stay separate",
+      "pass": true
+    },
+    {
+      "name": "24-hour equipment contributes on closed days",
+      "pass": true
+    },
+    {
+      "name": "No-backup outages suppress finance and comparative carbon",
+      "pass": true,
+      "detail": {
+        "interruptH": 730
+      }
+    },
+    {
+      "name": "Other-backup outages also withhold comparisons",
+      "pass": true
+    },
+    {
+      "name": "Removed genset with insufficient backup suppresses comparisons",
+      "pass": true
+    },
+    {
+      "name": "Missing financial quote withholds savings/payback",
+      "pass": true
+    },
+    {
+      "name": "Missing diesel fuel rate withholds combined carbon and finance",
+      "pass": true
+    },
+    {
+      "name": "Lifecycle grid factor is not added to diesel combustion",
+      "pass": true
+    },
+    {
+      "name": "Grid PV arithmetic: 365 kWh/year divided by 4x365 yield",
+      "pass": true
+    },
+    {
+      "name": "Off-grid arithmetic: worst month and entered battery datasheet",
+      "pass": true
+    },
+    {
+      "name": "Missing module continuous discharge must block complete module count",
+      "pass": true
+    },
+    {
+      "name": "Zero/infeasible inverter efficiency must not yield module count",
+      "pass": true
+    },
+    {
+      "name": "Zero own monthly solar yield must be rejected before PV division",
+      "pass": true
+    },
+    {
+      "name": "Negative equipment input must not be accepted as complete demand",
+      "pass": true
+    },
+    {
+      "name": "More than seven days per week must be rejected",
+      "pass": true
+    },
+    {
+      "name": "All comparative fields stay absent even with complete user entries",
+      "pass": true
+    },
+    {
+      "name": "Sustained X-ray enters continuous battery DC sizing at PF1 upper bound",
+      "pass": true,
+      "detail": {
+        "dcKW": 3.2631578947368425,
+        "modules": 22,
+        "note": "Continuous X-ray discharge uses 3 kW as an upper bound at PF=1 from the stated 3 kVA input, not measured running watts."
+      }
+    },
+    {
+      "name": "Momentary X-ray leaves complete module count unavailable",
+      "pass": true
+    },
+    {
+      "name": "Missing X-ray input prevents complete module count",
+      "pass": true
+    },
+    {
+      "name": "Unknown X-ray duration and branch-only data cannot complete module sizing",
+      "pass": true
+    },
+    {
+      "name": "Momentary capacity check also tests continuous inverter capacity",
+      "pass": true
+    },
+    {
+      "name": "Numeric X-ray checks never claim phase or BMS compatibility",
+      "pass": true
+    },
+    {
+      "name": "X-ray toggle off excludes its energy and discharge requirement",
+      "pass": true
+    },
+    {
+      "name": "Zero scanner quantity does not require unused state readings",
+      "pass": true
+    },
+    {
+      "name": "Load and battery arithmetic reject overflowing finite inputs",
+      "pass": true
+    }
+  ],
+  "passCount": 33,
+  "failCount": 0,
+  "embeddedData": {
+    "cities": 47,
+    "countries": 22,
+    "usaCities": 13
+  },
+  "details": {
+    "noBatteryFeasibilityYetComparison": {
+      "battery": {
+        "need": [],
+        "usable": 0.2,
+        "compatibilityVerified": false,
+        "notes": [],
+        "basis": "2 h × 0.10 kW average open-hours load",
+        "moduleNeed": [
+          "positive module nominal kWh",
+          "usable depth of discharge greater than 0 and at most 100%",
+          "inverter efficiency greater than 0 and at most 100%",
+          "positive module continuous discharge rating (kW DC)"
+        ],
+        "moduleCountComplete": false,
+        "note": ""
+      },
+      "comparison": {
+        "projectionUnavailable": true,
+        "comparable": false,
+        "need": [],
+        "notes": [
+          "Comparative savings, payback and avoided CO2 are not calculated in this release. Monthly PV energy does not establish usable dispatch or matched service; battery feasibility and actual backup operation must be verified.",
+          "Requested battery target: 2 h at the modelled average open-hours load, not verified coverage of 2 h per outage day."
+        ],
+        "quoteReference": 10000,
+        "outH": 2,
+        "interruptH": 730,
+        "requestedCoverH": 2
+      }
+    },
+    "insufficientScannerThroughput": [
+      "Test scanner: 100 scans × 30 min need 50.0 h per machine, but the service is open 10 h. Only 10 h of scanning is counted."
+    ],
+    "gridLoss80Percent": {
+      "array": 0.25,
+      "lossUpper": 0.3125,
+      "solarUsed": 365
+    }
+  }
+}
